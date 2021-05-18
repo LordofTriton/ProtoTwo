@@ -1,0 +1,132 @@
+﻿@model ProtoTwo.Models.Main
+
+@{
+    ViewBag.Title = "Guest List";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<!--CONFIRMED-->
+<div class="box" style="width: 100%; height: auto; margin: 0px">
+    <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Guest List (Confirmed)</h2>
+    <div class="period">
+        <h3 class="period_id linkgray" style="color: dimgrey; font-family: Momcake; float: right; padding-top: 5px">&#187 @Html.ActionLink("Filter", "Filter")</h3>
+    </div>
+    <div style="display: block; overflow-x: auto; width: 100%; overflow-y: scroll; max-height: 415px">
+        <table style="height: 80%">
+            <tr>
+                <th>ID</th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>PHONE</th>
+                <th>DATE</th>
+                <th>TIME</th>
+                <th>PURPOSE</th>
+                <th>MEETING WITH</th>
+                <th>TAG</th>
+                <th>ACTION</th>
+            </tr>
+            @{ var num = 1; }
+            @foreach (var entry in ProtoTwo.Models.Main.CGuestList)
+            {
+                <tr id="@entry.Tag">
+                    <td>@num</td>
+                    <td>@entry.FirstName</td>
+                    <td>@entry.LastName</td>
+                    <td>@entry.Phone</td>
+                    <td>@entry.RegDate</td>
+                    <td>@entry.Time</td>
+                    <td>@entry.Purpose</td>
+                    <td>@entry.Meeting</td>
+                    <td>@entry.Tag</td>
+                    @if (ProtoTwo.Models.Main.VisitorList != null)
+                    {
+                        if (ProtoTwo.Models.Main.VisitorList.Where(model => model.Tag == entry.Tag).Count() > 0)
+                        {
+                            <td> </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <form method='post' action="./recordGuest">
+                                    <input type="hidden" name="Tag" value="@entry.Tag">
+                                    <input class='db_btn' type='submit' value='Record' style='width: 100%; height: 100%; font-family: Arial Rounded MT; text-align: right;' />
+                                </form>
+                            </td>
+                        }
+                    }
+                </tr>
+                num += 1;
+            }
+        </table>
+    </div>
+</div>
+<!--PENDING-->
+<div class="box" style="width: 100%; height: auto; margin: 50px 0px 0px 0px">
+    <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Guest List (Pending)</h2>
+    <div style="display: block; overflow-x: auto; width: 100%; overflow-y: scroll; max-height: 415px">
+        <table style="height: 80%">
+            <tr>
+                <th>ID</th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>PHONE</th>
+                <th>PROPOSED DATE</th>
+                <th>TIME</th>
+                <th>PURPOSE</th>
+                <th>MEETING WITH</th>
+                <th>ACTIONS</th>
+                <th> </th>
+            </tr>
+            @{ num = 1; }
+            @foreach (var entry in ProtoTwo.Models.Main.PGuestList)
+            {
+                <tr id="@entry.Tag">
+                    <td>@num</td>
+                    <td>@entry.FirstName</td>
+                    <td>@entry.LastName</td>
+                    <td>@entry.Phone</td>
+                    <td>@entry.RegDate</td>
+                    <td>@entry.Time</td>
+                    <td>@entry.Purpose</td>
+                    <td>@entry.Meeting</td>
+                    <td>
+                        <form method='post' action="./confirmGuest">
+                            <input type="hidden" name="Tag" value="@entry.Tag">
+                            <input class='db_btn' type='submit' value='Confirm' style='width: 100%; height: 100%; font-family: Arial Rounded MT; text-align: right;' />
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <input type="hidden" name="Tag" value="@entry.Tag">
+                            <button class="db_btn" style='width: 100%; height: 100%; font-family: Arial Rounded MT; text-align: right;' onclick='document.getElementById("reschedulebox @entry.Tag").style.display = "block"; return false'>Reschedule</button>
+                        </form>
+                        <div id="reschedulebox @entry.Tag" class="reschedulebox" style="background-color: rgba(0, 0, 0, 0.7); z-index: 1; position: fixed; top: 0; left: 0; height: 100%; width: 100%">
+                            <div class="" style="height: 50%; width: 40%; background-color: white; position: fixed; top: 25%; left: 30%; border-radius: 20px; border-top: 10px solid lawngreen; box-shadow: 0px 1px 30px black">
+                                <div style="width: 50px; height: 50px; float: right; margin: 0px;">
+                                    <button style="font-family: Momcake; color: dimgray; background-color: transparent; font-size: 40px; width: 100%; height: 100%; border: 0px; outline: 0px" onclick='document.getElementById("reschedulebox").style.display = "none";'>X</button>
+                                </div>
+                                <h1 id="tggd" class="font5" style="color: dimgray; padding: 10px 0px 0px 30px; margin: 0px">Reschedule Appointment</h1><br>
+                                <form method="post" action="/Main/Reschedule">
+                                    <div style="padding: 20px 30px 0px 30px;">
+                                        <div style="float: left; width: 48%">
+                                            <input type="hidden" name="Tag" value="@entry.Tag">
+                                            <label class="font5" name="Date" style="color: dimgray">Specify Date</label><br>
+                                            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @style = "width: 100%; height: 50px; background-color: white; border: 0px; border-radius: 10px; box-shadow: 0px 1px 10px; outline: 0px; padding-left: 20px; margin-top: 10px; margin-bottom: 20px; padding-right: 10px; font-family: Momcake; color: dimgrey" } })
+                                        </div>
+                                        <div style="float: right; width: 48%">
+                                            <label class="font5" name="Time" style="color: dimgray">Specify Time</label><br>
+                                            @Html.EditorFor(m => m.STime, new { htmlAttributes = new { @style = "width: 100%; height: 50px; background-color: white; border: 0px; border-radius: 10px; box-shadow: 0px 1px 10px; outline: 0px; padding-left: 20px; margin-top: 10px; padding-right: 10px; font-family: Momcake; color: dimgrey" } })
+                                        </div>
+                                        <input class="rec_submit" type="submit" value="Submit" style="margin-top: 50px">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                num += 1;
+            }
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,106 @@
+﻿@model ProtoTwo.Models.Welcome
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_WelcomeLayout.cshtml";
+}
+
+<!--<div style="width: 35%; height: 600px; float: right; background-color: dimgray; border-radius: 20px; box-shadow: 0px 3px 30px;">
+        <div class="team">
+            <div class="team_text">
+            <img src="~/Images/employee7.jpg" style="width: 100%; height: 300px; padding: 10px; border-radius: 20px; box-sizing: border-box">
+
+            <h3 class="font4" style="margin: auto; text-align: center; color: white; padding: 30px 30px 40px 30px">"Our strength lies in our people who are very professional. Together with our local and international partners, we are poised to deliver exceptional products and services."</h3>
+
+            <h1 id="dott" class="font1" style="margin: auto; text-align: center; color: white; padding-top: 10px; padding-bottom: 10px; background-color: gray">Meet the Team...</h1></div>
+            <div class="team_content">
+                <h3 class="font1" style="background-color: dimgray; border-radius: 20px; color: white; text-align: center">The Team</h3>
+                <div style="width: 46%; height: 30.5%; background-color: white; border-radius: 20px 20px 20px 0px; float: left; margin: 8px; overflow: hidden; box-sizing: border-box">
+                    <img class="thumb" src="~/Images/employee1.jpg" alt="pic">
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Name | Position</h6>
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Lorem ipsum dolor sit amet...</h6>
+                </div>
+                <div style="width: 46%; height: 30.5%; background-color: white; border-radius: 20px 20px 20px 0px; float: left; margin: 8px; overflow: hidden; box-sizing: border-box">
+                    <img class="thumb" src="~/Images/employee3.jpg" alt="pic">
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Name | Position</h6>
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Lorem ipsum dolor sit amet...</h6>
+                </div>
+                <div style="width: 46%; height: 30.5%; background-color: white; border-radius: 20px 20px 20px 0px; float: left; margin: 8px; overflow: hidden; box-sizing: border-box">
+                    <img class="thumb" src="~/Images/employee5.jpg" alt="pic">
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Name | Position</h6>
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Lorem ipsum dolor sit amet...</h6>
+                </div>
+
+                <div style="width: 46%; height: 30.5%; background-color: white; border-radius: 20px 20px 20px 0px; float: left; margin: 8px; overflow: hidden; box-sizing: border-box">
+                    <img class="thumb" src="~/Images/employee6.jpg" alt="pic">
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Name | Position</h6>
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Lorem ipsum dolor sit amet...</h6>
+                </div>
+                <div style="width: 46%; height: 30.5%; background-color: white; border-radius: 20px 20px 20px 0px; float: left; margin: 8px; overflow: hidden; box-sizing: border-box">
+                    <img class="thumb" src="~/Images/employee4.jpg" alt="pic">
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Name | Position</h6>
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Lorem ipsum dolor sit amet...</h6>
+                </div>
+                <div style="width: 46%; height: 30.5%; background-color: white; border-radius: 20px 20px 20px 0px; float: left; margin: 8px; overflow: hidden; box-sizing: border-box">
+                    <img class="thumb" src="~/Images/employee2.jpg" alt="pic">
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Name | Position</h6>
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Lorem ipsum dolor sit amet...</h6>
+                </div>
+
+                <div style="width: 46%; height: 30.5%; background-color: white; border-radius: 20px 20px 20px 0px; float: left; margin: 8px; overflow: hidden; box-sizing: border-box">
+                    <img class="thumb" src="~/Images/employee5.jpg" alt="pic">
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Name | Position</h6>
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Lorem ipsum dolor sit amet...</h6>
+                </div>
+                <div style="width: 46%; height: 30.5%; background-color: white; border-radius: 20px 20px 20px 0px; float: left; margin: 8px; overflow: hidden; box-sizing: border-box">
+                    <img class="thumb" src="~/Images/employee1.jpg" alt="pic">
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Name | Position</h6>
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Lorem ipsum dolor sit amet...</h6>
+                </div>
+                <div style="width: 46%; height: 30.5%; background-color: white; border-radius: 20px 20px 20px 0px; float: left; margin: 8px; overflow: hidden; box-sizing: border-box">
+                    <img class="thumb" src="~/Images/employee4.jpg" alt="pic">
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Name | Position</h6>
+                    <h6 class="font1" style="padding: 5px 10px 0px 10px; margin: 0px">Lorem ipsum dolor sit amet...</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 63%; height: 600px; float: left">
+        <div style="z-index: 0; position: absolute; width: inherit; height: inherit; border-radius: 20px; box-shadow: 0px 3px 30px;"></div>
+        <div style="display: block; width: 100%">
+        <img src="~/Images/sidmach.png" width=250 height=90 alt="logo" style="filter: grayscale(100%); padding: 50px 50px 5px 30px;">
+        <button class="submitter" style="float: right; width: 350px; margin: 70px 30px 0px 0px; font-size: 20px; border: 3px solid lawngreen;">Make an Apointment</button>
+        </div>
+        <div style="border-radius: 20px; box-shadow: 0px 1px 30px; background-color: white; margin: 20px; height: 400px; display: block">
+            <h2 class="font5" style="color: dimgray; padding: 30px 30px 10px 30px;">Welcome to SIDMACH TECHNOLOGIES.</h2>
+
+            <h3 class="font5" style="color: dimgray; padding: 0px 30px 0px 30px;">SIDMACH is an innovation-driven enterprise providing IT solutions, that are scalable, proven, secure and easy to use.</h3>
+            <h3 class="font5" style="color: dimgray; padding: 0px 10px 9px 30px; display: block;">For more information, visit <a href="www.sidmach.com" style="color: red">www.sidmach.com</a>.</h3>
+
+            <button class="submitter" style="width: 350px; margin: 70px; font-size: 20px; border: 3px solid lawngreen;">Make an Apointment</button>
+        </div>
+        </div>-->
+
+
+<div class="welcomemsg" style="height: 200px; padding-left: 50px; padding-right: 50px">
+    <h1 class="font5" style="color: white; text-align: center; margin-top: 70px">Welcome To Sidmach Technologies.</h1>
+    <h5 class="font1" style="color: white; text-align: center; margin-top: 50px; margin-bottom: 50px">SIDMACH is an innovation-driven enterprise providing IT solutions that are scalable, proven, secure and easy to use.</h5>
+</div>
+<div class="welcomebox">
+    <h2 class="font5" style="color: white; padding: 10px 0px 0px 10px">Schedule An Appointment</h2>
+    <h5 class="font1" style="color: white; padding: 10px 0px 0px 10px">In order to serve you better and increase workplace efficiency, we implemented an automated Visitor Management System. Now, you can make appointments from the comfort of your home. We look forward to seeing you at our office!</h5>
+    <button onclick="location.href = '@Url.Action("Appointment", "Welcome")'" class="font5 welcomebtn linkwhite" style="">Make An Appointment</button>
+</div>
+<br>
+<div class="welcomebox">
+    <h2 class="font5" style="color: white; padding: 10px 0px 0px 10px">Send Us Feedback</h2>
+    <h5 class="font1" style="color: white; padding: 10px 0px 0px 10px">If you have visited Sidmach before, please let us know how satisfactory your visit was. This information will help us improve our Visitor Management System and fix any issues with our customer relations. Thank you!</h5>
+    <button onclick="location.href = '@Url.Action("Feedback", "Welcome")'" class="font5 welcomebtn linkwhite" style="">Send Feedback</button>
+</div>
+<br>
+<div class="welcomebox">
+    <h2 class="font5" style="color: white; padding: 10px 0px 0px 10px">Contact Us</h2>
+    <h5 class="font1" style="color: white; padding: 10px 0px 0px 10px">Do you have any suggestions, inquiries, information, or proposal for us? Then contact us! We're always happy to hear from you.</h5>
+    <h5 class="font1" style="color: white; padding: 10px 0px 0px 10px"></h5>
+    <button onclick="location.href = '@Url.Action("Contact", "Welcome")'" class="font5 welcomebtn linkwhite" style="">Contact Us</button>
+</div>

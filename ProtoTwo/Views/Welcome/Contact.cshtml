@@ -1,0 +1,33 @@
+﻿@model ProtoTwo.Models.Welcome
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_WelcomeLayout.cshtml";
+}
+
+<div style="width: 100%; height: auto; padding: 10px">
+    <div class="appo_text" style="height: 400px; float: left">
+        <h1 class="font5" style="font-size: 70px; color: white; padding: 30px 30px 10px 30px">Send us a message!</h1>
+        <h4 class="font5" style="font-size: 30px; color: white; padding: 30px">We'd love to hear from you...</h4>
+    </div>
+    <div class="appo_form" style="float: right">
+        <h1 class="font5" style="color: dimgray;">Contact Us!</h1>
+
+        <form name="recorder" method="post" action="/Welcome/sendMessage">
+            <label class="rec_label">Full Name<p style="color: red; display: inline;"> *</p></label><br>
+            <input class="rec_box" type="text" name="FullName" required><br>
+            <label class="rec_label">Email<p style="color: red; display: inline;"> *</p></label><br>
+            <input class="rec_box" type="text" name="Email" required><br>
+            <label class="rec_label">Message<p style="color: red; display: inline;"> *</p></label><br>
+            <textarea class="rec_box" type="text" name="Message" style="resize: none; height: 300px; padding: 10px"></textarea><br>
+            <br>
+            <input class="rec_submit" type="submit" value="Send">
+        </form>
+    </div>
+</div>
+
+
+
+
+
+

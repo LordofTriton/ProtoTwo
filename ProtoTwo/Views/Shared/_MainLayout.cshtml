@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html style="height: 100%" lang="en">
+<head>
+    <title id="page_title">@ViewBag.Title</title>
+    <meta name="viewport" content="width=SITE_MIN_WIDTH, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="~/Content/style.css">
+</head>
+<body style="overflow: scroll">
+    <div style="background-color: rgba(0, 0, 0, 0.7); z-index: -1; position: fixed; top: 0; left: 0; height: 100%; width: 100%">
+    </div>
+    <div class="highlight" style="top: 0px"></div>
+
+    <div class="desk">
+        <div class="header">
+            <a href='@Url.Action("Index", "Main")'>
+                <img src="../Images/sidmach.png" alt="logo" width=100 height=40 style="margin: 25px 0px 15px 50px; filter: grayscale(100%);">
+            </a>
+        </div>
+        <div class="topnav">
+            <ul class="nav" style="border-radius: 0px 0px 20px 20px">
+                <li id="Dashboard">@Html.ActionLink("Dashboard", "Dashboard")</li>
+                <li id="Registry">@Html.ActionLink("Registry", "Registry")</li>
+                <li id="Guest List">@Html.ActionLink("Guest List", "GuestList")</li>
+                <li id="Recorder">@Html.ActionLink("Recorder", "Recorder")</li>
+                <li id="Staff">@Html.ActionLink("PhoneBook", "Staff")</li>
+                <li id="About">@Html.ActionLink("About", "About")</li>
+            </ul>
+            @if (@ProtoTwo.Models.Main.glalert > 0)
+            {
+                <script>
+                    document.getElementById("Guest List").className = "notif";
+                </script>
+            }
+            <script>
+                x = document.getElementById("page_title").innerHTML;
+                if (x == "Filter") x = "Registry";
+                document.getElementById(x).className = "active";
+            </script>
+        </div>
+
+        <div class="page_name" style="overflow: hidden">
+            <div style="width: 70%; float: left"><h1 style="color: white; font-family: Masque; padding: 30px; margin: 0px">@ViewBag.Title <b id="fun"></b></h1></div>
+            <div style="width: 30%; float: right"><h1 id="main_date" class="font5" style="color: white; padding: 30px; margin: 0px; float: right"></h1></div>
+        </div>
+        @RenderBody()
+    </div>
+    <div id="foot" class="footer">
+        <h5 id="footer_text" style="color: white; text-align: center; padding: 7px; font-family: Arial Rounded MT;">&#169 2021 SIDMACH TECHNOLOGIES. All Rights Reserved.</h5>
+    </div>
+    <div class="highlightd" style="bottom: 0px"></div>
+    <div id="alertbox" class="alertbox" style="background-color: rgba(0, 0, 0, 0.7); z-index: 1; position: fixed; top: 0; left: 0; height: 100%; width: 100%">
+        <div class="" style="height: 50%; width: 40%; background-color: white; position: fixed; top: 25%; left: 30%; border-radius: 20px; border-top: 10px solid lawngreen; box-shadow: 0px 1px 30px">
+            <div style="width: 50px; height: 50px; float: right; margin: 0px;">
+                <button style="font-family: Momcake; color: dimgray; background-color: transparent; font-size: 40px; width: 100%; height: 100%; border: 0px; outline: 0px" onclick='document.getElementById("alertbox").style.display = "none"'>X</button>
+            </div>
+            <h1 class="font5" style="color: dimgray; padding: 10px 0px 0px 30px; margin: 0px">Alert!</h1><br>
+            <div style="padding: 20px 30px 0px 30px;">
+                <h3 class="font5" id="alertmsg">@ViewBag.alertMsg</h3>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/script.js"></script>
+</body>
+</html>

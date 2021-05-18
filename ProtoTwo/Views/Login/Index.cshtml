@@ -1,0 +1,39 @@
+﻿@model ProtoTwo.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+    <div class="main">
+        <div class="form_card">
+            <div class="form_cardi">
+                <div class="illus">
+                    <div style="float: left; margin: 0px 0px 0px 0px; background-image: url(../Images/office2.png); background-size: 100% 100%; width: 100%; height: 100%">
+                        <img src="../Images/sidmach.png" alt="logo" width=100 height=40 style="margin: 20px 0px 15px 10px; filter: grayscale(100%);">
+                    </div>
+                </div>
+                <div class="login" style="">
+                    <h1 style="font-family: Masque; color: dimgrey; font-size: 50px; padding: 0px; margin: 0px">LOGIN</h1>
+                    <h5 id="login_error" class="login_error">@ProtoTwo.Models.Login.error</h5>
+                    <br>
+                    <br>
+                    <form method="post" action="/Login/Verify">
+                        <input class="form_box" type="text" name="UserName" id="userid" style="margin-bottom: 10px;" placeholder="Username" required>
+                        <br>
+                        <input class="form_box" type="password" name="Password" id="pass" style="margin-bottom: 20px;" placeholder="Password" required>
+                        <br>
+                        <input type="checkbox" name="logStorage" value="No">
+                        <label for="logStorage" style="color: dimgrey; font-family: Arial Rounded MT">Remember Me.</label>
+                        <label><a href="index.html" style="font-family: Arial Rounded MT; color: dimgrey; padding: 0px; float: right">Forgot Your Password?</a></label>
+                        <br>
+                        <br>
+                        <input class="submitter" type="submit" value="Submit">
+                    </form>
+                </div>
+                </div>
+        </div>
+        </div>
+        <div class="footer" style="margin-top: 25px">
+            <h5 id="footer_text" style="color: white; text-align: center; padding: 7px; font-family: Arial Rounded MT;">&#169 2021 SIDMACH TECHNOLOGIES. All Rights Reserved.</h5>
+        </div>

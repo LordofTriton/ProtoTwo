@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html style="height: auto !important; min-height: 100rem" lang="en">
+<head>
+    <title id="page_title">@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/style.css">
+    <script src="~/Scripts/script.js"></script>
+    <style type="text/css">
+        @@media screen and (max-width: 1100px) {
+            .welcomebox {margin: 0px 20px 100px 20px;}
+            .rev_cont {margin: 50px 0% 0px 0%; width: 100%; height: 760px}
+            .rev_half {width: 100%;}
+            .rev_img {height: 200px; overflow: hidden}
+            .mod {margin-right: 20%}
+            .rev_opt {height: 40px; padding: 0px; padding-top: 5px;}
+            .rev_title {text-align: center;}
+            .appo_text {
+                width: inherit;
+                float: none;
+                box-sizing: border-box;
+                height: 550px;
+                margin-top: 10px;
+            }
+            .appo_form {
+                width: 100%;
+                float: none;
+                box-sizing: border-box;
+            }
+            .menu1 {display: none;}
+            .menu2 {display: block;}
+            .welcomemsg {margin-bottom: 50px}
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: rgba(0, 0, 0, 0.7); z-index: -1; position: fixed; top: 0; left: 0; height: 100%; width: 100%"></div>
+    <div class="highlight" style="top: 0px"></div>
+    <div style="padding: 10px; margin: 0px; height: auto !important; min-height: 100rem">
+        <div style="padding: 10px; background-color: white; border-radius: 20px; box-shadow: 0px 1px 50px; padding-right: 30px">
+            <div class="menu1">
+                <div style="float: right; margin: 12px 20px 0px 20px"><h4 id="Contact" class="font5 linkgray" style="color: dimgray">@Html.ActionLink("Contact", "Contact")</h4></div>
+                <div style="float: right; margin: 12px 20px 0px 20px"><h4 id="Feedback" class="font5 linkgray" style="color: dimgray">@Html.ActionLink("Feedback", "Feedback")</h4></div>
+                <div style="float: right; margin: 12px 20px 0px 20px">
+                    <h4 id="Appointment" class="font5 linkgray" style="color: dimgray">@Html.ActionLink("Appointment", "Appointment")</h4>
+                </div>
+                <script>
+                    x = document.getElementById("page_title").innerHTML;
+                    document.getElementById(x).style.fontSize = "30px";
+                    document.getElementById(x).style.marginTop = "10px";
+                </script>
+            </div>
+            <img src="../Images/sidmach.png" alt="logo" width=100 height=40 style="margin: 20px 0px 15px 50px; filter: grayscale(100%);">
+        </div>
+        <div class="menu2">
+            <h4 class="font5 linkwhite" style="color: dimgray; text-align: center"><pre class="font5">@Html.ActionLink("Contact", "Contact")     |     @Html.ActionLink("Feedback", "Feedback")     |     @Html.ActionLink("Appointment", "Appointment")</pre></h4>
+        </div>
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <h5 id="footer_text" style="color: white; text-align: center; padding: 7px; font-family: Arial Rounded MT;">&#169 2021 SIDMACH TECHNOLOGIES. All Rights Reserved.</h5>
+    </div>
+    <div class="highlightd" style="bottom: 0px"></div>
+</body>
+</html>

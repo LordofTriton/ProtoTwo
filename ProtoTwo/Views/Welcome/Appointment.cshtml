@@ -1,0 +1,52 @@
+﻿@model ProtoTwo.Models.Welcome
+
+@{
+    ViewBag.Title = "Appointment";
+    Layout = "~/Views/Shared/_WelcomeLayout.cshtml";
+}
+
+<div class="welcomemsg" style="width: 100%; height: auto !important; min-height: 100rem; padding: 10px">
+    <div class="appo_text" style="float: right">
+        <h1 class="font5" style="font-size: 70px; color: white; padding: 30px 30px 10px 30px">Make an Appointment with one click!</h1>
+        <h4 class="font5" style="font-size: 30px; color: white; padding: 30px">We can attend to your needs better when we know you're coming...</h4>
+    </div>
+    <div class="appo_form" style="float: left">
+        <h1 class="font5" style="color: dimgray;">Schedule Appointment</h1>
+
+        <form name="recorder" method="post" action="/Main/addGuest">
+            <h2 class="counter">Personal Details</h2>
+            <label class="rec_label">First Name<p style="color: red; display: inline;"> *</p></label><br>
+            <input class="rec_box" type="text" name="FirstName" required><br>
+            <label class="rec_label">Last Name<p style="color: red; display: inline;"> *</p></label><br>
+            <input class="rec_box" type="text" name="LastName" required><br>
+            <label class="rec_label">Address<p style="color: red; display: inline;"> *</p></label><br>
+            <input class="rec_box" type="text" name="Residence" required><br>
+
+            <h2 class="counter">Contact Details</h2>
+            <label class="rec_label">Phone<p style="color: red; display: inline;"> *</p></label><br>
+            <input class="rec_box" type="text" name="Phone" required><br>
+            <label class="rec_label">Email Address<p style="color: red; display: inline;"> *</p></label><br>
+            <input class="rec_box" type="text" name="Email" required><br>
+
+            <h2 class="counter">Date & Time</h2>
+            <div style="width: 100%; overflow: hidden">
+            <div style="width: 48%; float: left;">
+                <label class="rec_label">Date<p style="color: red; display: inline;"> *</p></label><br>
+                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "rec_box", @style = "color: dimgray", @value = DateTime.Now.AddDays(1).ToString("d") } })
+            </div>
+            <div style="width: 48%; float: right">
+                <label class="rec_label">Time<p style="color: red; display: inline;"> *</p></label><br>
+                @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "rec_box", @style = "color: dimgray", @value = DateTime.Now.AddHours(1).ToString("t") } })
+            </div></div>
+
+            <h2 class="counter">Purpose</h2>
+            <label class="rec_label">Purpose of Visit<p style="color: red; display: inline;"> *</p></label><br>
+            <input id="time" class="rec_box" type="text" name="Purpose" value="" required><br>
+            <label class="rec_label" title="Who are you here to see?">Request To See<p style="color: red; display: inline;"> *</p></label><br>
+            <input id="time" class="rec_box" type="text" name="Meeting" value="" required><br>
+            <br>
+            <input class="rec_submit" type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+

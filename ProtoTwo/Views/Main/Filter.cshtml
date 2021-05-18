@@ -1,0 +1,65 @@
+﻿@model ProtoTwo.Models.Main
+
+@{
+    ViewBag.Title = "Filter";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var ren = "/Main/setFilter";
+}
+
+<div class="box" style="width: 100%; height: auto; margin: 0px;">
+    <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Filter</h2>
+    <form id="removeFilter" method="post" action="/Main/removeFilter"><button class="font5 rec_submit linkwhite" style="height: 40px; margin: 10px 30px 0px 0px; float: right; display: inline; width: 150px">Remove Filter</button></form>
+    <form method="post" action="/Main/setFilter">
+        <div class="period" style="padding-right: 20px">
+            <button id="setFilter" class="font5 rec_submit linkwhite" style="height: 40px; margin: 10px 30px 0px 0px">Set Filter</button>
+        </div>
+        <div class="filter_field" style="overflow-y: scroll; display: block; width: 100%">
+            <input type="text" name="FirstName" style="width: 365px" placeholder="First Name">
+            <input type="text" name="LastName" style="width: 365px" placeholder="Last Name">
+            <input type="text" name="Phone" style="width: 220px" placeholder="Phone">
+            <input type="text" name="Purpose" style="width: 220px" placeholder="Purpose">
+            <input type="text" name="Meeting" style="width: 200px" placeholder="Request To See">
+
+            <input type="text" name="Tag" style="width: 130px" placeholder="Tag">
+            @Html.EditorFor(model => model.STimeFrom, new { htmlAttributes = new { @style = "width: 200px; padding-right: 10px", @title = "Time Range (Lower)" } })
+            @Html.EditorFor(model => model.STimeTo, new { htmlAttributes = new { @style = "width: 200px; padding-right: 10px", @title = "Time Range (Higher)" } })
+
+            @Html.EditorFor(model => model.DateFrom, new { htmlAttributes = new { @style = "width: 200px; padding-right: 10px", @title = "Date Range (Lower)" } })
+            @Html.EditorFor(model => model.DateTo, new { htmlAttributes = new { @style = "width: 200px; padding-right: 10px", @title = "Date Range (Higher)" } })
+        </div>
+    </form>
+</div>
+@*<div id="filtercheckbox" class="filtercheckbox" style="background-color: rgba(0, 0, 0, 0.7); z-index: 1; position: fixed; top: 0; left: 0; height: 100%; width: 100%">
+    <div class="" style="height: 50%; width: 40%; background-color: white; position: fixed; top: 25%; left: 30%; border-radius: 20px; border-top: 10px solid lawngreen; box-shadow: 0px 1px 30px">
+        <div style="width: 50px; height: 50px; float: right; margin: 0px;">
+            <button style="font-family: Momcake; color: dimgray; background-color: transparent; font-size: 40px; width: 100%; height: 100%; border: 0px; outline: 0px" onclick='document.getElementById("filtercheckbox").style.display = "none"'>X</button>
+        </div>
+        <h1 class="font5" style="color: dimgray; padding: 10px 0px 0px 30px; margin: 0px">Filter</h1><br>
+        <div style="padding: 20px 30px 0px 30px;">
+            <h4 class="font5" style="color: dimgray; padding: 0px">Select List to Filter:</h4>
+            <div style="float: left; width: 48%">
+                <form method="post" action="/Main/filterOperation">
+                    <input type="hidden" value="Vistors">
+                    <button class="rec_submit" style="margin-top: 30px" onclick='document.getElementById("filtercheckbox").style.display = "none"'>Visitors Registry</button>
+                </form>
+            </div>
+            <div style="float: right; width: 48%">
+                <form method="post" action="/Main/filterOperation">
+                    <input type="hidden" value="Guests">
+                    <button class="rec_submit" style="margin-top: 30px" onclick='document.getElementById("filtercheckbox").style.display = "none"'>Guest List</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+
+
+
+
+
+
+
