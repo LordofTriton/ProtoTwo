@@ -5,118 +5,90 @@
     Layout = "~/Views/Shared/_WelcomeLayout.cshtml";
 }
 
-@if (ViewBag.feedid == "Rating")
-{
-    <div style="width: 100%; height: 700px; padding: 10px">
-        <div class="rev_cont">
-            <div class="rev_half rev_img">
-                <h1 class="font5 rev_title" style="color: dimgray; margin-top: 0px">Rate Your Visit To SIDMACH!</h1>
-                <img src="~/Images/office1.jpg" alt="img">
-            </div>
+<div style="width: 100%; height: 700px; padding: 10px">
+    <div class="rev_cont">
+        <div class="rev_half rev_img">
+            <h1 class="font5 rev_title" style="color: dimgray; margin-top: 0px">Rate Your Visit To SIDMACH!</h1>
+            <img src="~/Images/office1.jpg" alt="img">
+        </div>
 
-            <div class="rev_half" style="border-radius: 20px; box-shadow: 0px 1px 10px; height: auto">
-                <div style="height: 80px; border-radius: 10px; margin-bottom: 20px; ">
-                    <div>
-                        <h1 class="font5" style="color: dimgray; padding: 30px 30px 0px 30px; margin: 0px">At SIDMACH, we put Customer Satisfaction first.</h1>
-                        <h4 class="font1" style="color: dimgray; padding: 10px 30px 0px 30px">Take a moment to rate your recent visit to SIDMACH.</h4>
-                        <h4 class="font1" style="color: dimgray; padding: 0px 30px 0px 30px">This information will help us improve our Customer Relations and ensure that your next visit will be even better!</h4>
-                        <h4 class="font1" style="color: dimgray; padding: 5px 30px 0px 30px">How would you evaluate your experience at SIDMACH?</h4>
+        <div class="rev_half" style="border-radius: 20px; box-shadow: 0px 1px 10px; height: auto">
+            <div style="height: 80px; border-radius: 10px; margin-bottom: 20px; ">
+                <div>
+                    <h1 class="font5" style="color: dimgray; padding: 30px 30px 0px 30px; margin: 0px">At SIDMACH, we put Customer Satisfaction first.</h1>
+                    <h4 class="font1" style="color: dimgray; padding: 10px 30px 0px 30px">Take a moment to rate your recent visit to SIDMACH.</h4>
+                    <h4 class="font1" style="color: dimgray; padding: 0px 30px 0px 30px">This information will help us improve our Customer Relations and ensure that your next visit will be even better!</h4>
+                    <h4 class="font1" style="color: dimgray; padding: 5px 30px 0px 30px">How would you evaluate your experience at SIDMACH?</h4>
+                </div>
+                <br>
+                <div style="padding-left: 30px; padding-right: 30px; width: 100%;">
+                    <div class="rev_opt">
+                        <form method="post" action="/Welcome/saveRating">
+                            <input type="hidden" name="Rating" value="1">
+                            <input type="submit" value="1" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
+                        </form>
                     </div>
-                    <br>
-                    <div style="padding-left: 30px; padding-right: 30px; width: 100%;">
-                        <div class="rev_opt">
-                            <form method="post" action="/Welcome/saveRating">
-                                <input type="hidden" name="Rating" value="1">
-                                <input type="submit" value="1" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
-                            </form>
-                        </div>
-                        <div class="rev_opt">
-                            <form method="post" action="/Welcome/saveRating">
-                                <input type="hidden" name="Rating" value="2">
-                                <input type="submit" value="2" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
-                            </form>
-                        </div>
-                        <div class="rev_opt">
-                            <form method="post" action="/Welcome/saveRating">
-                                <input type="hidden" name="Rating" value="3">
-                                <input type="submit" value="3" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
-                            </form>
-                        </div>
-                        <div class="rev_opt">
-                            <form method="post" action="/Welcome/saveRating">
-                                <input type="hidden" name="Rating" value="4">
-                                <input type="submit" value="4" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
-                            </form>
-                        </div>
-                        <div class="rev_opt">
-                            <form method="post" action="/Welcome/saveRating">
-                                <input type="hidden" name="Rating" value="5">
-                                <input type="submit" value="5" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
-                            </form>
-                        </div>
-                        <div class="rev_opt">
-                            <form method="post" action="/Welcome/saveRating">
-                                <input type="hidden" name="Rating" value="6">
-                                <input type="submit" value="6" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
-                            </form>
-                        </div>
-                        <div class="rev_opt">
-                            <form method="post" action="/Welcome/saveRating">
-                                <input type="hidden" name="Rating" value="7">
-                                <input type="submit" value="7" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
-                            </form>
-                        </div>
-                        <div class="rev_opt">
-                            <form method="post" action="/Welcome/saveRating">
-                                <input type="hidden" name="Rating" value="8">
-                                <input type="submit" value="8" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
-                            </form>
-                        </div>
-                        <div class="rev_opt">
-                            <form method="post" action="/Welcome/saveRating">
-                                <input type="hidden" name="Rating" value="9">
-                                <input type="submit" value="9" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
-                            </form>
-                        </div>
-                        <div class="rev_opt">
-                            <form method="post" action="/Welcome/saveRating">
-                                <input type="hidden" name="Rating" value="10">
-                                <input type="submit" value="10" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
-                            </form>
-                        </div>
+                    <div class="rev_opt">
+                        <form method="post" action="/Welcome/saveRating">
+                            <input type="hidden" name="Rating" value="2">
+                            <input type="submit" value="2" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
+                        </form>
+                    </div>
+                    <div class="rev_opt">
+                        <form method="post" action="/Welcome/saveRating">
+                            <input type="hidden" name="Rating" value="3">
+                            <input type="submit" value="3" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
+                        </form>
+                    </div>
+                    <div class="rev_opt">
+                        <form method="post" action="/Welcome/saveRating">
+                            <input type="hidden" name="Rating" value="4">
+                            <input type="submit" value="4" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
+                        </form>
+                    </div>
+                    <div class="rev_opt">
+                        <form method="post" action="/Welcome/saveRating">
+                            <input type="hidden" name="Rating" value="5">
+                            <input type="submit" value="5" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
+                        </form>
+                    </div>
+                    <div class="rev_opt">
+                        <form method="post" action="/Welcome/saveRating">
+                            <input type="hidden" name="Rating" value="6">
+                            <input type="submit" value="6" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
+                        </form>
+                    </div>
+                    <div class="rev_opt">
+                        <form method="post" action="/Welcome/saveRating">
+                            <input type="hidden" name="Rating" value="7">
+                            <input type="submit" value="7" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
+                        </form>
+                    </div>
+                    <div class="rev_opt">
+                        <form method="post" action="/Welcome/saveRating">
+                            <input type="hidden" name="Rating" value="8">
+                            <input type="submit" value="8" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
+                        </form>
+                    </div>
+                    <div class="rev_opt">
+                        <form method="post" action="/Welcome/saveRating">
+                            <input type="hidden" name="Rating" value="9">
+                            <input type="submit" value="9" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
+                        </form>
+                    </div>
+                    <div class="rev_opt">
+                        <form method="post" action="/Welcome/saveRating">
+                            <input type="hidden" name="Rating" value="10">
+                            <input type="submit" value="10" style="border: 0px; width: 100%; height: 100%; background-color: white; font-family: Momcake; color: dimgray; font-size: 20px">
+                        </form>
+                    </div>
 
-                        <h4 class="font5" style="float: left; display: inline; color: dimgray">Very Bad</h4>
-                        <h4 class="font5" style="float: right; display: inline; color: dimgray">Very Good</h4>
-                        <h4 class="font5 mod">Moderate</h4>
-                    </div>
+                    <h4 class="font5" style="float: left; display: inline; color: dimgray">Very Bad</h4>
+                    <h4 class="font5" style="float: right; display: inline; color: dimgray">Very Good</h4>
+                    <h4 class="font5 mod">Moderate</h4>
                 </div>
             </div>
-
         </div>
+
     </div>
-}
-
-@if (ViewBag.feedid == "Sorry")
-{
-    <div style="width: 100%; height: 700px; padding: 10px">
-        <div class="rev_cont">
-            <div class="rev_half rev_img">
-                <h1 class="font5 rev_title" style="color: dimgray; margin-top: 0px">Rate Your Visit To SIDMACH!</h1>
-                <img src="~/Images/office1.jpg" alt="img">
-            </div>
-
-            <div class="rev_half" style="border-radius: 20px; box-shadow: 0px 1px 10px; height: 400px">
-                <div style="height: 80px; border-radius: 10px; margin-bottom: 20px; ">
-                    <div>
-                        <h1 class="font5" style="color: dimgray; padding: 30px 30px 0px 30px; margin: 0px">Sorry, this page isn't available yet...</h1>
-                        <h4 class="font1" style="color: dimgray; padding: 10px 30px 0px 30px">Try accessing it from the feedback link sent to your email.</h4>
-                        <h4 class="font1" style="color: dimgray; padding: 0px 30px 0px 30px">You could also send us an email at admin@sidmach.com</h4>
-                        <h4 class="font1" style="color: dimgray; padding: 5px 30px 0px 30px">Thank you!</h4>
-                    </div>
-                    <br>
-                </div>
-            </div>
-
-        </div>
-    </div>
-}
+</div>

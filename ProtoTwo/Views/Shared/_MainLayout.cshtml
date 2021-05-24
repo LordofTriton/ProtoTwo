@@ -1,23 +1,128 @@
 ﻿<!DOCTYPE html>
-<html style="height: 100%" lang="en">
+<html style="height: 100rem" lang="en">
 <head>
     <title id="page_title">@ViewBag.Title</title>
     <meta name="viewport" content="width=SITE_MIN_WIDTH, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="~/Content/style.css">
+    <style type="text/css">
+        .accountmsg { width: 85%; }
+        .divduodata div { width: 50%; }
+        
+        @@media screen and (max-width: 1100px) {
+            .totaldata {
+                width: 100%;
+                float: left;
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+            .accountinfo { width: 100%; }
+            .accountmsg { width: 80% }
+            .divduodata div div div { width: 63% !important; padding-top: 0px !important}
+            .searchfield { width: 280px; }
+            .searchfield:hover { width: 410px; }
+            .searchfield:focus { width: 410px; }
+            .bottomnavbar div { width: 100% !important; padding-left: 0px; padding-right: 0px}
+            .nav { display: none; }
+            .accountmsg h2 { text-align: center; margin: 35px 0px 30px 0px !important; }
+            .hovernavbtn { display: block; }
+            td { font-size: 13px; }
+            .rec_cont div { width: 100% !important; float: none !important; }
+            .searchcont { position: absolute; top: 10px; right: 10px; }
+        }
+    </style>
 </head>
-<body style="overflow: scroll">
+<body style="overflow-y: scroll; overflow-x: hidden">
+
+    <!--Div to darken the baackground image. This is just a hotfix. Can be improved.-->
     <div style="background-color: rgba(0, 0, 0, 0.7); z-index: -1; position: fixed; top: 0; left: 0; height: 100%; width: 100%">
     </div>
-    <div class="highlight" style="top: 0px"></div>
 
+    <div class="highlight" style="top: 0px"></div> <!--Green Line-->
+
+    <!--Contains everything on the page except the footer/navbar-->
     <div class="desk">
+        <div style="height: 50px"></div>
         <div class="header">
+            <!--Logo-->
             <a href='@Url.Action("Index", "Main")'>
-                <img src="../Images/sidmach.png" alt="logo" width=100 height=40 style="margin: 25px 0px 15px 50px; filter: grayscale(100%);">
+                <span><img class="logo" src="../Images/sidmach.png" alt="logo" width=90 height=40 style="margin: 20px 0px 15px 30px; float: left"></span>
             </a>
+            <!--Search Bar-->
+            <div style="padding: 0px 30px 22px 30px; height: 80px; float: right; overflow-y: hidden; position: absolute; top: 55px; right: 0px">
+                <form>
+                    <input class="font5 searchfield" type="text" placeholder="Search People, Pages, and Functions...">
+                </form>
+            </div>
         </div>
-        <div class="topnav">
-            <ul class="nav" style="border-radius: 0px 0px 20px 20px">
+
+        <div class="page_banner" style="overflow: hidden">
+            <!--Site Map/Url-->
+            <div style="width: 100%; box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.8); margin-bottom: 5px">
+                <pre class="font5 linkwhite" style="color: white; padding: 10px 30px 10px 30px; margin: 0px">|     <a href="/Main/">Home</a>     /     <span style="color: lawngreen">@ViewBag.Title</span>     /</pre>
+            </div>
+
+            <div style="width: 100%; height: 95px; margin-top: 15px">
+                <!--Welcome Message-->
+                <div class="accountinfo">
+                    <div class="accountmsg" style="float: right; height: 80px; width: 100%">
+                        <h2 class="font1" style="color: white; margin: 35px 0px 3px 30px">Hi <span style="color: lawngreen">Joshua</span>, welcome back!</h2>
+                    </div>
+                </div>
+
+                <!--Total Visitor Count & Total Guest Count. Shown on every 'Main' page-->
+                <div class="totaldata">
+                    <div style="float: left">
+                        <div style="height: 65px; width: 90%; margin: auto; margin-top: 15px; background-color: transparent; border-radius: 5px; padding: 0px; box-shadow: 0px 1px 10px black;">
+                            <div style="width: 30%; float: right; margin: 0px; padding: 0px">
+                                <img src="~/Images/barch7.png" width=55 height="50" style="margin: 0px; padding: 0px; float: right; margin: 10px 10px 5px 0px">
+                            </div>
+                            <div style="width: 70%; float: left; margin: 0px; padding: 0px">
+                                <h4 class="font5" style="color: white; padding: 10px 10px 0px 15px; margin: 0px">Total Visitors</h4>
+                                <h1 class="font5" style="color: white; padding: 0px 10px 0px 15px; margin: 0px">@ProtoTwo.Models.Main.VisitorList.Count()</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="float: right">
+                        <div style="height: 65px; width: 90%; margin: auto; margin-top: 15px; background-color: transparent; border-radius: 5px; box-shadow: 0px 1px 10px black;">
+                            <div style="width: 30%; float: right; margin: 0px; padding: 0px">
+                                <img src="~/Images/barch7.png" width=55 height="50" style="margin: 0px; padding: 0px; float: right; margin: 10px 10px 5px 0px">
+                            </div>
+                            <div style="width: 70%; float: left; margin: 0px; padding: 0px">
+                                <h4 class="font5" style="color: white; padding: 10px 10px 0px 15px; margin: 0px">Total Guests</h4>
+                                <h1 class="font5" style="color: white; padding: 0px 10px 0px 15px; margin: 0px">@ProtoTwo.Models.Main.CGuestList.Count()</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        @RenderBody() <!--Renders the body of the loaded page -->
+
+    </div>
+
+    <!--Reserved for viewers with smaller screens-->
+    <div class="hovernavbtn">
+        <h2 class="font5" style="color: white; text-align: center; padding: 13px; margin: 0px">&#9776;</h2>
+    </div>
+    <div class="sidenav">
+        <button id="sideDashboard" onclick="location.href =  '/Main/'" style="right: 50px">Dashboard</button>
+        <button id="sideRegistry" onclick="location.href =  '/Main/Registry'" style="right: 50px">Registry</button>
+        <button id="sideGuest List" onclick="location.href =  '/Main/GuestList'" style="right: 50px">Guest List</button>
+        <button id="sideRecorder" onclick="location.href =  '/Main/Recorder'" style="right: 50px">Recorder</button>
+        <button id="sideStaff" onclick="location.href =  '/Main/Staff'" style="right: 50px">PhoneBook</button>
+        <button id="sideAbout" onclick="location.href =  '/Main/About'" style="right: 50px">About</button>
+
+        <span><img class="logo" src="../Images/sidmach.png" alt="logo" width=90 height=40 style="margin: 20px 0px 15px 30px; position: absolute; bottom: 100px; float: left"></span>
+    </div>
+    <!---->
+
+    <div class="bottomnavbar">
+        <div style="float: right; width: 50%; margin: 0px; padding: 0px">
+            <ul class="nav">
                 <li id="Dashboard">@Html.ActionLink("Dashboard", "Dashboard")</li>
                 <li id="Registry">@Html.ActionLink("Registry", "Registry")</li>
                 <li id="Guest List">@Html.ActionLink("Guest List", "GuestList")</li>
@@ -35,19 +140,18 @@
                 x = document.getElementById("page_title").innerHTML;
                 if (x == "Filter") x = "Registry";
                 document.getElementById(x).className = "active";
+                document.getElementById("side"+ x).className = "sideactive";
             </script>
         </div>
-
-        <div class="page_name" style="overflow: hidden">
-            <div style="width: 70%; float: left"><h1 style="color: white; font-family: Masque; padding: 30px; margin: 0px">@ViewBag.Title <b id="fun"></b></h1></div>
-            <div style="width: 30%; float: right"><h1 id="main_date" class="font5" style="color: white; padding: 30px; margin: 0px; float: right"></h1></div>
+        <!--Footer Text-->
+        <div style="float: left; width: 50%; margin: 0px; padding: 22px 30px 30px 30px">
+            <h3 id="footer_text" style="color: dimgray; font-family: Momcake; display: inline; text-align: center">&#169 2021 SIDMACH TECHNOLOGIES. All Rights Reserved.</h3>
         </div>
-        @RenderBody()
     </div>
-    <div id="foot" class="footer">
-        <h5 id="footer_text" style="color: white; text-align: center; padding: 7px; font-family: Arial Rounded MT;">&#169 2021 SIDMACH TECHNOLOGIES. All Rights Reserved.</h5>
-    </div>
-    <div class="highlightd" style="bottom: 0px"></div>
+
+    <div class="highlightd" style="position: fixed; bottom: 0px"></div> <!--Green line at the bottom of the page-->
+
+    <!--Empty alert box for future purposes-->
     <div id="alertbox" class="alertbox" style="background-color: rgba(0, 0, 0, 0.7); z-index: 1; position: fixed; top: 0; left: 0; height: 100%; width: 100%">
         <div class="" style="height: 50%; width: 40%; background-color: white; position: fixed; top: 25%; left: 30%; border-radius: 20px; border-top: 10px solid lawngreen; box-shadow: 0px 1px 30px">
             <div style="width: 50px; height: 50px; float: right; margin: 0px;">
@@ -59,6 +163,9 @@
             </div>
         </div>
     </div>
+
+    <!--Load custom external javascript file-->
     <script src="~/Scripts/script.js"></script>
+
 </body>
 </html>

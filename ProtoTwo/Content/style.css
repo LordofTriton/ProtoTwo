@@ -1,16 +1,30 @@
 ﻿body {
     background-image: url(../Images/bck1.jpg);
-    overflow: scroll;
+    /*background-color: whitesmoke;*/
+    overflow: hidden;
     margin: 0px;
-    height: 100%;
+    height: 100rem;
     background-repeat: no-repeat;
     background-size: auto;
     background-attachment: fixed;
+    padding-bottom: 150px;
+}
+
+@keyframes emerge-fade {
+    from { opacity: 0; }
+    to { opacity: 100; }
+}
+
+@keyframes strobe {
+    0% { box-shadow: 0px 0px 0px black; transform: scale(1, 1); }
+    50% { box-shadow: 0px 0px 30px black; transform: scale(1.1, 1.1); }
+    100% { box-shadow: 0px 0px 0px black; transform: scale(1, 1); }
 }
 
 * {
     box-sizing: border-box;
 }
+
 .loge {
     background-color: red;
     height: 50px;
@@ -97,17 +111,16 @@ a {
 }
 
 .box {
-    width: 48%;
-    height: 440px;
-    background-color: whitesmoke;
-    border-radius: 20px;
+    width: 100%;
+    height: 450px;
+    background-color: white;
+    border-radius: 5px;
     padding: 10px 30px 30px 30px;
     box-sizing: border-box;
     display: inline-block;
-    float: left;
-    margin: 10px;
     box-shadow: 0px 1px 10px black;
-    border-top: 10px solid lawngreen;
+    margin: 0px;
+    margin-bottom: 10px;
 }
 
 .appo_text {
@@ -132,11 +145,12 @@ a {
 }
 
 .welcomebox {
-    background-image: linear-gradient(gray, dimgray);
+    /*background-image: linear-gradient(mediumslateblue, darkslateblue);*/
+    background-color: white;
     height: auto;
     border-radius: 10px;
     margin: 0px 100px 50px 100px;
-    border-top: 5px solid lawngreen;
+    border-top: 3px solid lawngreen;
     box-shadow: 0px 1px 40px;
     padding: 0px 30px 30px 30px;
 }
@@ -150,13 +164,15 @@ a {
     border: 0px;
     color: white;
     outline: 0px;
-    box-shadow: 0px 1px 5px black;
+    box-shadow: 0px 0px 1px black;
+    transition: transform 1s;
 }
 
     .welcomebtn:hover {
         background-image: linear-gradient(white, whitesmoke);
         color: dimgray;
         box-shadow: 0px 5px 30px black;
+        transform: scale(1.1, 1.1)
     }
 
     .welcomebtn:hover a {
@@ -172,22 +188,10 @@ a {
         margin: 0px;
     }
 
-.rec_cont {
-    width: 100%;
-    background-color: whitesmoke;
-    border-radius: 20px;
-    padding: 15px 30px 15px 30px;
-    box-sizing: border-box;
-    /*margin: 10px;*/
-    float: right;
-    box-shadow: 0px 1px 10px black;
-    border-top: 10px solid lawngreen;
-}
-
 .highlight {
     height: 4px;
     width: 100%;
-    background-image: linear-gradient(lawngreen, limegreen);
+    background-color: lawngreen;
     margin: 0px;
     box-sizing: border-box;
     position: fixed;
@@ -196,7 +200,7 @@ a {
 .highlightd {
     height: 4px;
     width: 100%;
-    background-image: linear-gradient(lawngreen, limegreen);
+    background-color: limegreen;
     margin: 0px;
     box-sizing: border-box;
 }
@@ -212,7 +216,6 @@ a {
 .desk {
     width: 100%;
     height: 1300px;
-    padding: 10px;
     box-sizing: border-box;
     margin: 0px;
 }
@@ -220,8 +223,8 @@ a {
 .footer {
     height: 30px;
     width: 100%;
-    background-image: linear-gradient(gray, dimgray);
-    border-radius: 20px 20px 0px 0px;
+    /*background-image: linear-gradient(mediumpurple, rebeccapurple);*/
+    background-color: darkslateblue;
     margin: 0px;
     position: relative;
     bottom: 0px;
@@ -325,21 +328,35 @@ a {
 
 .header {
     box-sizing: border-box;
-    border-radius: 20px 20px 0px 0px;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.8);
     margin: auto;
     overflow: hidden;
     background-color: white;
+    border-bottom: 5px solid limegreen;
+    border-top: 5px solid limegreen;
 }
 
-.topnav {
-    height: 60px;
-    background-image: linear-gradient(gray, dimgray);
+.bottomnavbar {
+    height: 65px;
+    width: 100%;
+    /*background-image: linear-gradient(gray, dimgray);*/
+    background-color: white;
     box-sizing: border-box;
-    border-radius: 0px 0px 20px 20px;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.8);
     margin: auto;
-    position: sticky;
+    position: fixed;
+    bottom: 0px;
+}
+
+.topnavbar {
+    height: 60px;
+    width: 100%;
+    /*background-image: linear-gradient(gray, dimgray);*/
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.8);
+    margin: auto;
+    position: fixed;
     top: 4px;
 }
 
@@ -358,11 +375,10 @@ a {
     padding: 30px;
 }
 
-.page_name {
+.page_banner {
     background-color: transparent;
-    width: 98%;
-    height: 90px;
-    margin: 0px;
+    height: auto;
+    margin: 5px 0px 10px 0px;
     padding: 0px;
 }
 
@@ -371,8 +387,9 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-image: linear-gradient(gray, dimgray);
-    height: 60px;
+    background-color: white;
+    height: 65px;
+    float: right;
 }
 
 li {
@@ -381,9 +398,9 @@ li {
 
     li a {
         display: block;
-        color: white;
+        color: dimgray;
         text-align: center;
-        padding: 23px 16px;
+        padding: 28px 16px;
         text-decoration: none;
         margin: auto;
         font-family: Momcake;
@@ -392,6 +409,7 @@ li {
         li a:hover {
             background-image: linear-gradient(lawngreen, limegreen);
             box-shadow: 0px 3px 5px lawngreen;
+            color: white;
             /*background-color: grey;
             box-shadow: 0px 3px 10px lawngreen;*/
         }
@@ -400,6 +418,10 @@ li {
     background-image: linear-gradient(lawngreen, limegreen);
     box-shadow: 0px 3px 5px lawngreen;
 }
+
+    .active a {
+        color: white;
+    }
 
 .menu1 {
     float: right;
@@ -413,7 +435,8 @@ table, th, td {
     color: white;
     border-collapse: collapse;
     padding: 10px;
-    font-family: Arial Rounded MT;
+    font-family: 'Arial Rounded MT';
+    text-transform: uppercase;
     text-align: left;
 }
 
@@ -424,19 +447,22 @@ table {
     border-collapse: collapse;
 }
 
+td {
+    color: black;
+    word-break: keep-all;
+    /*box-shadow: 0px 0px 1px 0px black;*/
+}
+
 th {
     background-image: linear-gradient(lawngreen, limegreen);
     color: white;
-}
-
-td {
-    color: black;
+    box-shadow: 1px 0px 5px 0px black;
+    height: 40px;
 }
 
 tr {
     height: 30px;
     background-color: white;
-    border-radius: 10px;
 }
 
     tr:nth-child(even) {
@@ -447,9 +473,10 @@ tr {
         background-color: limegreen;
     }
 
-    tr:hover td {
-        color: white;
-    }
+        tr:hover td {
+            color: white;
+            /*box-shadow: 0px 1px 3px 0px black;*/
+        }
 
 .period {
     display: inline-block;
@@ -489,6 +516,16 @@ tr {
     border-radius: 10px 20px 20px 10px;
     font-family: Arial Rounded MT;
     padding: 10px 10px 10px 20px;
+}
+
+.rec_cont {
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 15px 30px 15px 30px;
+    box-sizing: border-box;
+    float: right;
+    box-shadow: 0px 1px 10px black;
 }
 
 .rec_label {
@@ -551,7 +588,7 @@ tr {
 .rec_option {
     color: white;
     background-image: linear-gradient(gray, dimgray);
-    border-radius: 20px;
+    border-radius: 10px;
     font-family: Arial Rounded MT;
     padding: 10px 10px 10px 20px;
     width: 100%;
@@ -604,11 +641,10 @@ tr {
     height: 500px;
     margin: 50px 5% 0px 5%;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0px 1px 10px;
     padding: 30px;
     box-sizing: border-box;
-    border-top: 10px solid lawngreen;
 }
 
 .rev_half {
@@ -666,6 +702,194 @@ tr {
     box-shadow: 0px 3px 5px red;
 }
 
+.notif a {
+    color: white;
+}
+
 .reschedulebox, .alertbox {
     display: none;
+}
+
+.divbox {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.divsolo {
+    width: 100%;
+    margin: 0px;
+    padding: 0px 10px 0px 10px;
+}
+
+.divduo {
+    width: 50%;
+    margin: 0px;
+    padding: 0px 10px 0px 10px;
+    float: left;
+}
+
+.divtrio {
+    width: 33.33%;
+    margin: 0px;
+    padding: 0px 10px 0px 10px;
+    float: left;
+}
+
+.pie {
+    
+}
+
+@media screen and (max-width: 1100px) {
+    .divduo {
+        width: 100%;
+        float: left;
+        height: auto;
+    }
+}
+
+@keyframes embiggen {
+    from {width: 330px; height: 30px}
+    to {width: 400px; height: 40px}
+}
+
+.searchfield {
+    color: dimgray;
+    float: right;
+    width: 330px;
+    height: 40px;
+    text-align: right;
+    border-radius: 10px;
+    padding-right: 15px;
+    margin-top: 20px;
+    outline: 0px;
+    font-size: 15px;
+    transition: width 1s;
+}
+
+    .searchfield:hover {
+        box-shadow: 0px 0px 1px rgba(0,0,0,0.7);
+        padding-right: 20px;
+        width: 410px;
+    }
+
+    .searchfield:focus {
+        box-shadow: 0px 1px 10px rgba(0,0,0,0.8);
+        padding-right: 20px;
+        width: 410px;
+    }
+
+.totaldata {
+    width: 40%;
+    float: right;
+}
+
+    .totaldata div {
+        width: 50%;
+        margin: 0px;
+        height: 95px;
+    }
+
+.accountinfo {
+    width: 60%;
+    float: left;
+}
+
+.sidenav {
+    height: 100em;
+    position: fixed;
+    z-index: 3;
+    right: 0px;
+    top: 0px;
+    padding: 0px;
+    top: 0px;
+    right: 0px;
+    background-color: white;
+    display: none;
+    box-shadow: 1px 0px 10px rgba(0,0,0,0.7);
+    overflow: hidden;
+    width: 50%;
+    transition: padding-left 5s;
+}
+
+.sidenav button {
+    width: 150px;
+    height: 40px;
+    background-color: white;
+    outline: 0px;
+    float: left;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 1px rgba(0,0,0,0.7);
+    float: right;
+    transition: width 1s;
+    font-family: Momcake;
+    font-size: 15px;
+    animation-name: emerge-fade;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+    .sidenav button:hover {
+        outline: 0px;
+        border: 3px solid lawngreen;
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.7);
+        width: 200px;
+        border: 3px solid lawngreen;
+        font-size: 20px;
+        color: lawngreen;
+    }
+
+.sideactive {
+    outline: 0px;
+    border: 3px solid lawngreen;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.7);
+    width: 200px !important;
+    border: 3px solid lawngreen;
+    font-size: 20px !important;
+    color: lawngreen;
+}
+
+.hovernavbtn {
+    background-image: linear-gradient(lawngreen, limegreen);
+    width: 70px;
+    height: 60px;
+    position: fixed;
+    z-index: 3;
+    right: 10px;
+    bottom: 75px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.7);
+    display: none;
+    animation-name: strobe;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.hovernavbtn:hover ~ .sidenav {
+    display: block;
+}
+
+.sidenav:hover {
+    display: block;
+}
+
+.visitoraccinfobox {
+    display: none;
+    width: 300px;
+    height: 60px;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.7);
+    transition: height 1s;
+}
+
+    .visitoraccinfobox:hover {
+        height: 380px;
+    }
+
+.visitoraccinfo:hover .visitoraccinfobox {
+    display: block;
 }

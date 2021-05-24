@@ -13,6 +13,7 @@
     <div class="appo_form" style="float: left">
         <h1 class="font5" style="color: dimgray;">Schedule Appointment</h1>
 
+        <!--Calls Action Method with the provided data-->
         <form name="recorder" method="post" action="/Main/addGuest">
             <h2 class="counter">Personal Details</h2>
             <label class="rec_label">First Name<p style="color: red; display: inline;"> *</p></label><br>
@@ -32,11 +33,11 @@
             <div style="width: 100%; overflow: hidden">
             <div style="width: 48%; float: left;">
                 <label class="rec_label">Date<p style="color: red; display: inline;"> *</p></label><br>
-                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "rec_box", @style = "color: dimgray", @value = DateTime.Now.AddDays(1).ToString("d") } })
+                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "rec_box", @style = "color: dimgray", @required = "required" } })
             </div>
             <div style="width: 48%; float: right">
                 <label class="rec_label">Time<p style="color: red; display: inline;"> *</p></label><br>
-                @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "rec_box", @style = "color: dimgray", @value = DateTime.Now.AddHours(1).ToString("t") } })
+                @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "rec_box", @style = "color: dimgray", @required = "required" } })
             </div></div>
 
             <h2 class="counter">Purpose</h2>
@@ -44,6 +45,7 @@
             <input id="time" class="rec_box" type="text" name="Purpose" value="" required><br>
             <label class="rec_label" title="Who are you here to see?">Request To See<p style="color: red; display: inline;"> *</p></label><br>
             <input id="time" class="rec_box" type="text" name="Meeting" value="" required><br>
+            <a href="/Welcome/Index"><h4 class="font1" style="color: red; margin: 0px">Don't know who to visit?</h4></a>
             <br>
             <input class="rec_submit" type="submit" value="Submit">
         </form>

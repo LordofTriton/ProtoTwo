@@ -5,188 +5,385 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<div class="box">
-    <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Visitors Registry</h2>
-    <div class="period">
-        <h3 class="period_id linkgray" style='color: dimgrey; font-family: Momcake; float: right; padding-top: 5px'>&#187 @Html.ActionLink("Filter", "Filter")</h3>
-    </div>
-    <div>
-        <table style="height: 80%">
-            <tr>
-                <th>ID</th>
-                <th>FIRST NAME</th>
-                <th>LAST NAME</th>
-                <th>TAG</th>
-            </tr>
-            @{ var num = 1; var limit = ProtoTwo.Models.Main.VisitorList.Count(); }
-            @foreach (var entry in ProtoTwo.Models.Main.VisitorList.Skip(Math.Max(0, limit - 7)))
-            {
-                <tr onclick="location.href = '@Url.Action("Registry", "Main")' + '#' + @entry.Tag">
-                    <td>@num</td>
-                    <td>@entry.FirstName</td>
-                    <td>@entry.LastName</td>
-                    <td>@entry.Tag</td>
-                </tr>
-                num += 1;
-            }
-        </table>
-    </div>
-</div>
-<div class="box" style="float: right;">
-    <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Guest List</h2>
-    <div class="period">
-        <h3 class="period_id linkgray" style="color: dimgrey; font-family: Momcake; float: right; padding-top: 5px">&#187 @Html.ActionLink("Filter", "Filter")</h3>
-    </div>
-    <div>
-        <table style="height: 80%">
-            <tr>
-                <th>ID</th>
-                <th>FIRST NAME</th>
-                <th>LAST NAME</th>
-                <th>TAG</th>
-            </tr>
-            @{ num = 1; limit = ProtoTwo.Models.Main.CGuestList.Count(); }
-            @foreach (var entry in ProtoTwo.Models.Main.CGuestList.Skip(Math.Max(0, limit - 7)))
-            {
-                <tr onclick="location.href = '@Url.Action("GuestList", "Main", new { id = @entry.Tag })'">
-                    <td>@num</td>
-                    <td>@entry.FirstName</td>
-                    <td>@entry.LastName</td>
-                    <td>@entry.Tag</td>
-                </tr>
-                num += 1;
-            }
-        </table>
-    </div>
-</div>
-
-<div class="box">
-    <h2 style="color: dimgrey; font-family: Momcake">Visitor Distribution</h2>
-    <div style="width: 100%; height: 165px; background-image: linear-gradient(whitesmoke, white); box-sizing: border-box; border-radius: 15px; border: 5px solid dimgray; overflow: hidden">
-        <div style="width: 10%; height: 100%; float: left; margin: 0px; background-image: linear-gradient(gray, dimgray); padding: 0px;">
-            <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">MON</h3>
-            <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">TUE</h3>
-            <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">WED</h3>
-            <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">THU</h3>
-            <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">FRI</h3>
-        </div>
-        <div style="width: 80%; height: 100%; float: left; margin: 0px; box-shadow: 1px 0px 20px white; padding-left: 10px; z-index: -1">
-            <div style="padding: 0px; width: 73%; height: 15px; background-image: linear-gradient(gray, dimgray); margin-top: 8px; border-right: 3px solid lawngreen; border-radius: 10px 20px 20px 10px;"></div>
-            <div style="padding: 0px; width: 56%; height: 15px; background-image: linear-gradient(gray, dimgray); margin-top: 16px; border-right: 3px solid lawngreen; border-radius: 10px 20px 20px 10px"></div>
-            <div style="padding: 0px; width: 31%; height: 15px; background-image: linear-gradient(gray, dimgray); margin-top: 17px; border-right: 3px solid lawngreen; border-radius: 10px 20px 20px 10px"></div>
-            <div style="padding: 0px; width: 60%; height: 15px; background-image: linear-gradient(gray, dimgray); margin-top: 16px; border-right: 3px solid lawngreen; border-radius: 10px 20px 20px 10px"></div>
-            <div style="padding: 0px; width: 49%; height: 15px; background-image: linear-gradient(gray, dimgray); margin-top: 16px; border-right: 3px solid lawngreen; border-radius: 10px 20px 20px 10px"></div>
-        </div>
-        <div style="width: 10%; height: 100%; float: left; margin: 0px; padding: 0px; background-color: lawngreen; box-shadow: 1px 0px 10px lawngreen;">
-            <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">73</h3>
-            <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">56</h3>
-            <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">31</h3>
-            <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">60</h3>
-            <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">49</h3>
-        </div>
-    </div>
-</div>
-
-<div class="box" style="float: right;">
-    <h2 style="color: dimgrey; font-family: Momcake">Insights</h2>
-
-    <div style="background-image: linear-gradient(lawngreen, forestgreen); border-radius: 10px; height: 310px; width: 32%; float: left; margin: 1%; box-sizing: border-box">
-        <div style="background-color: white; border-radius: 10px; height: 200px; width: 100%; box-sizing: border-box">
-            <div style="width: 100%; height: 90px; background-color: dimgray; border-radius: 10px; border-top: 5px solid lawngreen">
-                <h4 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white">Total Visitors</h4>
-                <h1 class="font5" style="padding: 0px 20px 20px 20px; margin: 0px; color: white; font-size: 40px">@ProtoTwo.Models.Main.VisitorList.Count()</h1>
-            </div>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">Today</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">@ProtoTwo.Models.Main.VisitorList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")).Count()</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Week</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
-                @{
-                    var date2 = DateTime.Now.ToString("d");
-                    ProtoTwo.Models.Main mod1 = new ProtoTwo.Models.Main();
-                }
-                @ProtoTwo.Models.Main.VisitorList.Where(mod => mod1.isInWeek(Convert.ToDateTime(mod.RegDate))).Count()
-            </h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Month</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
-                @{
-                    @ProtoTwo.Models.Main.VisitorList.Where(mod => Convert.ToDateTime(mod.RegDate).Month == DateTime.Now.Month && Convert.ToDateTime(mod.RegDate).Year == DateTime.Now.Year).Count()
-                }
-            </h5>
-        </div>
-        <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Daily</h5>
-        <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
-        <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Weekly</h5>
-        <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
-        <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Monthly</h5>
-        <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
-    </div>
-    <div style="background-image: linear-gradient(lawngreen, forestgreen); border-radius: 10px; height: 310px; width: 31%; float: left; margin: 1%; box-sizing: border-box">
-        <div style="background-color: white; border-radius: 10px; height: 200px; width: 100%; box-sizing: border-box">
-            <div style="width: 100%; height: 90px; background-color: dimgray; border-radius: 10px; border-top: 5px solid lawngreen">
-                <h4 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white">Total Guests</h4>
-                <h1 class="font5" style="padding: 0px 20px 20px 20px; margin: 0px; color: white; font-size: 40px">@ProtoTwo.Models.Main.CGuestList.Count()</h1>
-            </div>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">Today</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">@ProtoTwo.Models.Main.CGuestList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")).Count()</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Week</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
-                @{
-                    date2 = DateTime.Now.ToString("d");
-                    ProtoTwo.Models.Main mod2 = new ProtoTwo.Models.Main();
-                }
-                @ProtoTwo.Models.Main.CGuestList.Where(mod => mod2.isInWeek(Convert.ToDateTime(mod.RegDate))).Count()
-            </h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Month</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
-                @{
-                    @ProtoTwo.Models.Main.CGuestList.Where(mod => Convert.ToDateTime(mod.RegDate).Month == DateTime.Now.Month && Convert.ToDateTime(mod.RegDate).Year == DateTime.Now.Year).Count()
-                }
-            </h5>
-        </div>
-        <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Daily</h5>
-        <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
-        <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Weekly</h5>
-        <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
-        <h5 class="font1" style="padding: 15px 13px 0px 20px; margin: 0px; color: white; float: left">Avg. Monthly</h5>
-        <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
-    </div>
-    <div style="background-image: linear-gradient(lawngreen, forestgreen); border-radius: 10px; height: 310px; width: 31%; float: left; margin: 1%; box-sizing: border-box">
-        <div style="background-color: white; border-radius: 10px; height: 200px; width: 100%; box-sizing: border-box">
-            <div style="width: 100%; height: 90px; background-color: dimgray; border-radius: 10px; border-top: 5px solid lawngreen">
-                <h4 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white">Total CSR (Avg.)</h4>
-                <h1 class="font5" style="padding: 0px 20px 20px 20px; margin: 0px; color: white; font-size: 40px">
-                    @{
-                        var num0 = 0;
-                        foreach (var entry in @ProtoTwo.Models.Main.RatingsList) { num0 += @entry.Ratings; }
-                        var num1 = @ProtoTwo.Models.Main.RatingsList.Count();
-                        var num3 = Convert.ToString((num0 / num1) * 10);
+<div id="latestadditions" class="divbox">
+    <div class="divduo">
+        <div class="box">
+            <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Visitors Registry | <span style="color: lawngreen; font-size: 18px"> Latest Additions</span></h2>
+            <div>
+                <table style="height: 80%">
+                    <tr>
+                        <th>ID</th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>TAG</th>
+                    </tr>
+                    @{ var num = 1; var limit = ProtoTwo.Models.Main.VisitorList.Count(); }
+                    @foreach (var entry in ProtoTwo.Models.Main.VisitorList.Skip(Math.Max(0, limit - 8)))
+                    {
+                        <tr onclick="location.href = '@Url.Action("Registry", "Main")' + '#' + @entry.Tag">
+                            <td>@num</td>
+                            <td>@entry.FirstName</td>
+                            <td>@entry.LastName</td>
+                            <td>@entry.Tag</td>
+                        </tr>
+                        num += 1;
                     }
-                    @num3%
-                </h1>
+                </table>
             </div>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">Today</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">@ProtoTwo.Models.Main.RatingsList.Where(mod => mod.SetDate == DateTime.Now.ToString("d")).Count()</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Week</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
-                @{
-                    date2 = DateTime.Now.ToString("d");
-                    ProtoTwo.Models.Main mod3 = new ProtoTwo.Models.Main();
-                }
-                @ProtoTwo.Models.Main.RatingsList.Where(mod => mod3.isInWeek(Convert.ToDateTime(mod.SetDate))).Count()
-            </h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Month</h5>
-            <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
-                @{
-                    @ProtoTwo.Models.Main.RatingsList.Where(mod => Convert.ToDateTime(mod.SetDate).Month == DateTime.Now.Month && Convert.ToDateTime(mod.SetDate).Year == DateTime.Now.Year).Count()
-                }
-            </h5>
         </div>
-        <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Daily</h5>
-        <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
-        <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Weekly</h5>
-        <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
-        <h5 class="font1" style="padding: 15px 13px 0px 20px; margin: 0px; color: white; float: left">Avg. Monthly</h5>
-        <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
+    </div>
+    <div class="divduo">
+        <div class="box">
+            <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Guest List | <span style="color: lawngreen; font-size: 18px"> Latest Additions</span></h2>
+            <div>
+                <table style="height: 80%">
+                    <tr>
+                        <th>ID</th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>TAG</th>
+                    </tr>
+                    @{ num = 1; limit = ProtoTwo.Models.Main.CGuestList.Count(); }
+                    @foreach (var entry in ProtoTwo.Models.Main.CGuestList.Skip(Math.Max(0, limit - 8)))
+                    {
+                        <tr onclick="location.href = '@Url.Action("GuestList", "Main", new { id = @entry.Tag })'">
+                            <td>@num</td>
+                            <td>@entry.FirstName</td>
+                            <td>@entry.LastName</td>
+                            <td>@entry.Tag</td>
+                        </tr>
+                        num += 1;
+                    }
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+<br>
+<div id="insights" class="divbox">
+    <div class="divduo divduodata">
+        <div style="height: 112.5px; float: left; padding: 0px 7px 15px 0px">
+            <div style="width: 100%; height: 100%; margin: 0px; padding: 10px; background-color: white; border-radius: 5px; border-left: 8px solid lawngreen; box-shadow: 0px 1px 10px black;">
+                <img src="~/Images/bdge4.png" width=60 height=60 style="margin: 10px 0px 0px 10px">
+                <div style="float: right; width: 75%; padding-top: 5px">
+                    <h4 class="font5" style="color: dimgray; padding: 11px 0px 0px 10px; margin: 0px">Today's Visitors</h4>
+                    <h2 class="font5" style="color: dimgray; padding: 0px 10px 10px 10px; font-size: 40px; margin: 0px">@ProtoTwo.Models.Main.VisitorList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")).Count()</h2>
+                </div>
+            </div>
+        </div>
+        <div style="height: 112.5px; float: left; padding: 0px 0px 15px 7px">
+            <div style="width: 100%; height: 100%; margin: 0px; padding: 10px; background-color: white; border-radius: 5px; border-left: 8px solid lawngreen; box-shadow: 0px 1px 10px black;">
+                <img src="~/Images/bdge4.png" width=60 height=60 style="margin: 10px 0px 0px 10px">
+                <div style="float: right; width: 75%; padding-top: 5px">
+                    <h4 class="font5" style="color: dimgray; padding: 11px 10px 0px 10px; margin: 0px">Today's Guests</h4>
+                    <h2 class="font5" style="color: dimgray; padding: 0px 10px 10px 10px; font-size: 40px; margin: 0px">@ProtoTwo.Models.Main.CGuestList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")).Count()</h2>
+                </div>
+            </div>
+        </div>
+        <div style="height: 112.5px; float: left; padding: 0px 7px 15px 0px">
+            <div style="width: 100%; height: 100%; margin: 0px; padding: 10px; background-color: white; border-radius: 5px; border-left: 8px solid lawngreen; box-shadow: 0px 1px 10px black;">
+                <img src="~/Images/bdge4.png" width=60 height=60 style="margin: 10px 0px 0px 10px">
+                <div style="float: right; width: 75%; padding-top: 5px">
+                    <h4 class="font5" style="color: dimgray; padding: 11px 10px 0px 10px; margin: 0px">New Visitors</h4>
+                    <h2 class="font5" style="color: dimgray; padding: 0px 10px 10px 10px; font-size: 40px; margin: 0px">
+                        @{ var today = ProtoTwo.Models.Main.VisitorList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")); num = today.Count(); }
+                        @foreach (var entry in today)
+                           {
+                                var check = ProtoTwo.Models.Main.VisitorList.Where(mod => mod.FirstName == entry.FirstName)
+                                    .Where(mod => mod.LastName == entry.LastName);
+
+                                if (check.Count() == 1) { num++; }
+
+                           }
+                        @num
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div style="height: 112.5px; float: left; padding: 0px 0px 15px 7px">
+            <div style="width: 100%; height: 100%; margin: 0px; padding: 10px; background-color: white; border-radius: 5px; border-left: 8px solid lawngreen; box-shadow: 0px 1px 10px black;">
+                <img src="~/Images/bdge4.png" width=60 height=60 style="margin: 10px 0px 0px 10px">
+                <div style="float: right; width: 75%; padding-top: 5px">
+                    <h4 class="font5" style="color: dimgray; padding: 11px 10px 0px 10px; margin: 0px">New Guests</h4>
+                    <h2 class="font5" style="color: dimgray; padding: 0px 10px 10px 10px; font-size: 40px; margin: 0px">
+                        @{ today = ProtoTwo.Models.Main.CGuestList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")); num = today.Count(); }
+                        @foreach (var entry in today)
+                        {
+                            var check = ProtoTwo.Models.Main.CGuestList.Where(mod => mod.FirstName == entry.FirstName)
+                                .Where(mod => mod.LastName == entry.LastName);
+
+                            if (check.Count() == 1) { num++; }
+
+                        }
+                        @num
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divduo" style="overflow: hidden">
+        <div style="width: 100%; height: 225px; float: left; padding: 0px 0px 15px 0px">
+            <div style="width: 100%; height: 100%; margin: 0px; padding: 0px 10px 20px 30px; background-color: white; border-radius: 5px; box-shadow: 0px 1px 10px black;">
+                <div id="pie" class="pie" style="padding: 0px; margin: 0px; margin-top: 20.5px; height: 175px; width: 175px; float: left; overflow: hidden">
+                    @*<h1 class="font1" style="padding: 0px; margin: 0px; color: white; text-align: center; margin-top: 35%; font-size: 50px">
+                        @{
+                            var num7 = 0;
+                            foreach (var entry in @ProtoTwo.Models.Main.RatingsList) { num7 += @entry.Ratings; }
+                            var num8 = @ProtoTwo.Models.Main.RatingsList.Count();
+                            var num9 = Convert.ToString((num7 / num8) * 10);
+                        }
+                        @num9%
+                    </h1>*@
+                </div>
+                <div style="width: 70%; float: right">
+                    <h1 class="font5" style="color: dimgray; padding: 0px 30px 0px 30px">Current Customer Satisfaction Rating</h1>
+                    <div style="width: 28%; float: left; background-color: gray; border-radius: 10px; height: 75px; margin: 0px 0px 0px 30px">
+                        <h4 class="font5" style="color: white; padding: 10px 10px 0px 10px; margin: 0px">Today</h4>
+                        <h1 class="font5" style="color: white; padding: 0px 10px 10px 10px; margin: 0px; font-size: 40px">@ProtoTwo.Models.Main.RatingsList.Where(mod => mod.SetDate == DateTime.Now.ToString("d")).Count()</h1>
+                    </div>
+                    <div style="width: 28%; float: left; background-color: gray; border-radius: 10px; height: 75px; margin: 0px 0px 0px 5px">
+                        <h4 class="font5" style="color: white; padding: 10px 10px 0px 10px; margin: 0px">This Week</h4>
+                        <h1 class="font5" style="color: white; padding: 0px 10px 10px 10px; margin: 0px; font-size: 40px">
+                            @{
+                                ProtoTwo.Models.Main mod3 = new ProtoTwo.Models.Main();
+                            }
+                            @ProtoTwo.Models.Main.RatingsList.Where(mod => mod3.isInWeek(Convert.ToDateTime(mod.SetDate))).Count()
+                        </h1>
+                    </div>
+                    <div style="width: 28%; float: left; background-color: gray; border-radius: 10px; height: 75px; margin: 0px 0px 0px 5px">
+                        <h4 class="font5" style="color: white; padding: 10px 10px 0px 10px; margin: 0px">This Month</h4>
+                        <h1 class="font5" style="color: white; padding: 0px 10px 10px 10px; margin: 0px; font-size: 40px">
+                            @{
+                                @ProtoTwo.Models.Main.RatingsList.Where(mod => Convert.ToDateTime(mod.SetDate).Month == DateTime.Now.Month && Convert.ToDateTime(mod.SetDate).Year == DateTime.Now.Year).Count()
+                            }
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="divbox">
+    <div class="divduo">
+        <div class="box">
+            <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Latest Additions To The <span style="color: red; font-family: Momcake">Guest List</span></h2>
+            <div class="period">
+                <h3 class="period_id linkgray" style='color: dimgrey; font-family: Momcake; float: right; padding-top: 5px'>&#187 @Html.ActionLink("Filter", "Filter")</h3>
+            </div>
+            <div>
+                <table style="height: 80%">
+                    <tr>
+                        <th>ID</th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>TAG</th>
+                    </tr>
+                    @{ num = 1; limit = ProtoTwo.Models.Main.VisitorList.Count(); }
+                    @foreach (var entry in ProtoTwo.Models.Main.VisitorList.Skip(Math.Max(0, limit - 8)))
+                    {
+                        <tr onclick="location.href = '@Url.Action("Registry", "Main")' + '#' + @entry.Tag">
+                            <td>@num</td>
+                            <td>@entry.FirstName</td>
+                            <td>@entry.LastName</td>
+                            <td>@entry.Tag</td>
+                        </tr>
+                        num += 1;
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="divduo">
+        <div class="box">
+            <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Latest Additions To The <span style="color: red; font-family: Momcake">Guest List</span></h2>
+            <div class="period">
+                <h3 class="period_id linkgray" style="color: dimgrey; font-family: Momcake; float: right; padding-top: 5px">&#187 @Html.ActionLink("Filter", "Filter")</h3>
+            </div>
+            <div>
+                <table style="height: 80%">
+                    <tr>
+                        <th>ID</th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>TAG</th>
+                    </tr>
+                    @{ num = 1; limit = ProtoTwo.Models.Main.CGuestList.Count(); }
+                    @foreach (var entry in ProtoTwo.Models.Main.CGuestList.Skip(Math.Max(0, limit - 8)))
+                    {
+                        <tr onclick="location.href = '@Url.Action("GuestList", "Main", new { id = @entry.Tag })'">
+                            <td>@num</td>
+                            <td>@entry.FirstName</td>
+                            <td>@entry.LastName</td>
+                            <td>@entry.Tag</td>
+                        </tr>
+                        num += 1;
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="divbox">
+    <div class="divduo">
+        <div class="box">
+            <h2 style="color: dimgrey; font-family: Momcake">Visitor Distribution</h2>
+            <div style="width: 100%; height: 165px; background-image: linear-gradient(whitesmoke, white); box-sizing: border-box; border-radius: 15px; border: 5px solid dimgray; overflow: hidden">
+                <div style="width: 10%; height: 100%; float: left; margin: 0px; background-image: linear-gradient(gray, dimgray); padding: 0px;">
+                    <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">MON</h3>
+                    <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">TUE</h3>
+                    <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">WED</h3>
+                    <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">THU</h3>
+                    <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">FRI</h3>
+                </div>
+                <div style="width: 80%; height: 100%; float: left; margin: 0px; box-shadow: 1px 0px 20px white; padding-left: 10px; z-index: -1">
+                    <div style="padding: 0px; width: 73%; height: 15px; background-image: linear-gradient(gray, dimgray); margin-top: 8px; border-right: 3px solid lawngreen; border-radius: 10px 20px 20px 10px;"></div>
+                    <div style="padding: 0px; width: 56%; height: 15px; background-image: linear-gradient(gray, dimgray); margin-top: 16px; border-right: 3px solid lawngreen; border-radius: 10px 20px 20px 10px"></div>
+                    <div style="padding: 0px; width: 31%; height: 15px; background-image: linear-gradient(gray, dimgray); margin-top: 17px; border-right: 3px solid lawngreen; border-radius: 10px 20px 20px 10px"></div>
+                    <div style="padding: 0px; width: 60%; height: 15px; background-image: linear-gradient(gray, dimgray); margin-top: 16px; border-right: 3px solid lawngreen; border-radius: 10px 20px 20px 10px"></div>
+                    <div style="padding: 0px; width: 49%; height: 15px; background-image: linear-gradient(gray, dimgray); margin-top: 16px; border-right: 3px solid lawngreen; border-radius: 10px 20px 20px 10px"></div>
+                </div>
+                <div style="width: 10%; height: 100%; float: left; margin: 0px; padding: 0px; background-color: lawngreen; box-shadow: 1px 0px 10px lawngreen;">
+                    <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">73</h3>
+                    <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">56</h3>
+                    <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">31</h3>
+                    <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">60</h3>
+                    <h3 class="font5" style="padding: 5px 10px 5px 10px; color: white; text-align: center; margin: 0px">49</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divduo">
+        <div class="box">
+            <h2 style="color: dimgrey; font-family: Momcake">Insights</h2>
+
+            <div style="background-image: linear-gradient(lawngreen, forestgreen); border-radius: 10px; height: 310px; width: 32%; float: left; margin: 1%; box-sizing: border-box; box-shadow: 0px 1px 5px 0px black;">
+                <div style="background-color: white; border-radius: 10px; height: 200px; width: 100%; box-sizing: border-box; box-shadow: 0px 1px 5px 0px black;">
+                    <div style="width: 100%; height: 90px; background-color: dimgray; border-radius: 10px; border-top: 5px solid lawngreen; box-shadow: 0px 1px 3px 0px black;">
+                        <h4 class="font5" style="padding: 15px 20px 0px 20px; margin: 0px; color: white">Total Visitors</h4>
+                        <h1 class="font5" style="padding: 0px 20px 20px 20px; margin: 0px; color: white; font-size: 40px">@ProtoTwo.Models.Main.VisitorList.Count()</h1>
+                    </div>
+                    <h5 class="font5" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">Today</h5>
+                    <h5 class="font5" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">@ProtoTwo.Models.Main.VisitorList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")).Count()</h5>
+                    <h5 class="font5" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Week</h5>
+                    <h5 class="font5" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
+                        @{
+                            var date2 = DateTime.Now.ToString("d");
+                            ProtoTwo.Models.Main mod1 = new ProtoTwo.Models.Main();
+                        }
+                        @ProtoTwo.Models.Main.VisitorList.Where(mod => mod1.isInWeek(Convert.ToDateTime(mod.RegDate))).Count()
+                    </h5>
+                    <h5 class="font5" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Month</h5>
+                    <h5 class="font5" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
+                        @{
+                            @ProtoTwo.Models.Main.VisitorList.Where(mod => Convert.ToDateTime(mod.RegDate).Month == DateTime.Now.Month && Convert.ToDateTime(mod.RegDate).Year == DateTime.Now.Year).Count()
+                        }
+                    </h5>
+                </div>
+                <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Daily</h5>
+                <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
+                <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Weekly</h5>
+                <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
+                <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Monthly</h5>
+                <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
+            </div>
+            <div style="background-image: linear-gradient(lawngreen, forestgreen); border-radius: 10px; height: 310px; width: 31%; float: left; margin: 1%; box-sizing: border-box; box-shadow: 0px 1px 5px 0px black;">
+                <div style="background-color: white; border-radius: 10px; height: 200px; width: 100%; box-sizing: border-box; box-shadow: 0px 1px 5px 0px black;">
+                    <div style="width: 100%; height: 90px; background-color: dimgray; border-radius: 10px; border-top: 5px solid lawngreen; box-shadow: 0px 1px 3px 0px black;">
+                        <h4 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white">Total Guests</h4>
+                        <h1 class="font5" style="padding: 0px 20px 20px 20px; margin: 0px; color: white; font-size: 40px">@ProtoTwo.Models.Main.CGuestList.Count()</h1>
+                    </div>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">Today</h5>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">@ProtoTwo.Models.Main.CGuestList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")).Count()</h5>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Week</h5>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
+                        @{
+                            date2 = DateTime.Now.ToString("d");
+                            ProtoTwo.Models.Main mod2 = new ProtoTwo.Models.Main();
+                        }
+                        @ProtoTwo.Models.Main.CGuestList.Where(mod => mod2.isInWeek(Convert.ToDateTime(mod.RegDate))).Count()
+                    </h5>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Month</h5>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
+                        @{
+                            @ProtoTwo.Models.Main.CGuestList.Where(mod => Convert.ToDateTime(mod.RegDate).Month == DateTime.Now.Month && Convert.ToDateTime(mod.RegDate).Year == DateTime.Now.Year).Count()
+                        }
+                    </h5>
+                </div>
+                <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Daily</h5>
+                <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
+                <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Weekly</h5>
+                <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
+                <h5 class="font1" style="padding: 15px 13px 0px 20px; margin: 0px; color: white; float: left">Avg. Monthly</h5>
+                <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
+            </div>
+            <div style="background-image: linear-gradient(lawngreen, forestgreen); border-radius: 10px; height: 310px; width: 31%; float: left; margin: 1%; box-sizing: border-box; box-shadow: 0px 1px 5px 0px black;">
+                <div style="background-color: white; border-radius: 10px; height: 200px; width: 100%; box-sizing: border-box; box-shadow: 0px 1px 5px 0px black;">
+                    <div style="width: 100%; height: 90px; background-color: dimgray; border-radius: 10px; border-top: 5px solid lawngreen; box-shadow: 0px 1px 3px 0px black;">
+                        <h4 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white">Total CSR (Avg.)</h4>
+                        <h1 class="font5" style="padding: 0px 20px 20px 20px; margin: 0px; color: white; font-size: 40px">
+                            @{
+                                var num0 = 0;
+                                foreach (var entry in @ProtoTwo.Models.Main.RatingsList) { num0 += @entry.Ratings; }
+                                var num1 = @ProtoTwo.Models.Main.RatingsList.Count();
+                                var num3 = Convert.ToString((num0 / num1) * 10);
+                            }
+                            @num3%
+                        </h1>
+                    </div>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">Today</h5>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">@ProtoTwo.Models.Main.RatingsList.Where(mod => mod.SetDate == DateTime.Now.ToString("d")).Count()</h5>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Week</h5>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
+                        @{
+                            date2 = DateTime.Now.ToString("d");
+                            mod3 = new ProtoTwo.Models.Main();
+                        }
+                        @ProtoTwo.Models.Main.RatingsList.Where(mod => mod3.isInWeek(Convert.ToDateTime(mod.SetDate))).Count()
+                    </h5>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: left">This Month</h5>
+                    <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: black; float: right">
+                        @{
+                            @ProtoTwo.Models.Main.RatingsList.Where(mod => Convert.ToDateTime(mod.SetDate).Month == DateTime.Now.Month && Convert.ToDateTime(mod.SetDate).Year == DateTime.Now.Year).Count()
+                        }
+                    </h5>
+                </div>
+                <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Daily</h5>
+                <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
+                <h5 class="font1" style="padding: 15px 15px 0px 20px; margin: 0px; color: white; float: left">Avg. Weekly</h5>
+                <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
+                <h5 class="font1" style="padding: 15px 13px 0px 20px; margin: 0px; color: white; float: left">Avg. Monthly</h5>
+                <h5 class="font1" style="padding: 15px 20px 0px 20px; margin: 0px; color: white; float: right">000</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    //Load Google Charts
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Rating', 'Number of Rates'],
+            ["1", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 1).Count()],
+            ["2", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 2).Count()],
+            ["3", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 3).Count()],
+            ["4", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 4).Count()],
+            ["5", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 5).Count()],
+            ["6", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 6).Count()],
+            ["7", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 7).Count()],
+            ["8", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 8).Count()],
+            ["9", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 9).Count()],
+            ["10", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 10).Count()],
+        ]);
+
+        var options = { width: 175, height: 175, pieHole: 0.4 };
+        var chart = new google.visualization.PieChart(document.getElementById('pie'));
+        chart.draw(data, options);
+    }
+</script>
 

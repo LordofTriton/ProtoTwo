@@ -6,9 +6,13 @@
     <link rel="stylesheet" href="~/Content/style.css">
     <script src="~/Scripts/script.js"></script>
 </head>
+
 <body style="overflow: hidden">
-    <div class="highlight" style="top: 0px"></div>
-    @RenderBody()
-    <div class="highlightd" style="position: fixed; bottom: 0px"></div>
+    <div class="highlight" style="top: 0px"></div> <!--The green line at the top of the page :) -->
+
+    @RenderBody() <!--Renders the body of the loaded page -->
+
+    <div class="highlightd" style="position: fixed; bottom: 0px"></div> <!--The green line at the bottom of the page :) -->
+
 </body>
 </html>

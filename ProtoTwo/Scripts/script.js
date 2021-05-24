@@ -22,7 +22,6 @@ function Slide() {
     document.body.style.backgroundImage = "url(" + bckg[num] + ")";
 }
 
-var time = setInterval(Funn, 100);
 //var load = setInterval(Load, 8);
 
 function Verify() {
@@ -47,14 +46,14 @@ function Funn() {
 }
 
 d = new Date;
-document.getElementById("main_date").innerHTML = d.toDateString();
+//document.getElementById("main_date").innerHTML = d.toDateString();
 
 function Blink() {
     var x = document.getElementsByClassName("notif");
     if (x.length > 0) {
         x = x[0];
         if (x.style.backgroundImage == "linear-gradient(red, darkred)") {
-            x.style.backgroundImage = "linear-gradient(gray, dimgray)";
+            x.style.backgroundImage = "linear-gradient(white, whitesmoke)";
         } else {
             x.style.backgroundImage = "linear-gradient(red, darkred)";
         }

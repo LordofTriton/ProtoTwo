@@ -5,35 +5,39 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<div class="rec_cont" id="record_form">
-    <form name="recorder" method="post" action="/Main/addVisitor">
-        <div style="width: 48%; float: left;">
-            <h2 class="counter">Personal Details</h2>
-            <label class="rec_label">First Name<p style="color: red; display: inline;"> *</p></label><br>
-            <input class="rec_box" type="text" name="FirstName" required><br>
-            <label class="rec_label">Last Name<p style="color: red; display: inline;"> *</p></label><br>
-            <input class="rec_box" type="text" name="LastName" required><br>
-            <label class="rec_label">Address<p style="color: red; display: inline;"> *</p></label><br>
-            <input class="rec_box" type="text" name="Residence" required><br>
-            <h2 class="counter">Contact Details</h2>
-            <label class="rec_label">Phone<p style="color: red; display: inline;"> *</p></label><br>
-            <input class="rec_box" type="text" name="Phone" required><br>
-            <label class="rec_label">Email Address<p style="color: red; display: inline;"> *</p></label><br>
-            <input class="rec_box" type="text" name="Email" required><br>
-        </div>
+<div class="divbox">
+    <div class="divsolo">
+        <div class="rec_cont" id="record_form">
+            <form name="recorder" method="post" action="/Main/addVisitor">
+                <div style="width: 48%; float: left;">
+                    <h2 class="counter">Personal Details</h2>
+                    <label class="rec_label">First Name<p style="color: red; display: inline;"> *</p></label><br>
+                    <input class="rec_box" type="text" name="FirstName" required><br>
+                    <label class="rec_label">Last Name<p style="color: red; display: inline;"> *</p></label><br>
+                    <input class="rec_box" type="text" name="LastName" required><br>
+                    <label class="rec_label">Address<p style="color: red; display: inline;"> *</p></label><br>
+                    <input class="rec_box" type="text" name="Residence" required><br>
+                    <h2 class="counter">Contact Details</h2>
+                    <label class="rec_label">Phone<p style="color: red; display: inline;"> *</p></label><br>
+                    <input class="rec_box" type="text" name="Phone" required><br>
+                    <label class="rec_label">Email Address<p style="color: red; display: inline;"> *</p></label><br>
+                    <input class="rec_box" type="text" name="Email" required><br>
+                </div>
 
-        <div style="width: 48%; float: right; margin-right: 10px">
-            <h2 class="counter">Time</h2>
-            <label class="rec_label">Check-In<p style="color: red; display: inline;"> *</p></label><br>
-            <input id="time" class="rec_box" type="text" name="Check_In" value="@DateTime.Now.ToString("t")" required><br>
-            <h2 class="counter">Purpose</h2>
-            <label class="rec_label">Purpose of Visit<p style="color: red; display: inline;"> *</p></label><br>
-            <input id="time" class="rec_box" type="text" name="Purpose" value="" required><br>
-            <label class="rec_label" title="Who are you here to see?">Request To See<p style="color: red; display: inline;"> *</p></label><br>
-            <input id="time" class="rec_box" type="text" name="Meeting" value="" required><br>
-            <br>
-            <input class="rec_submit" type="submit" value="Record">
+                <div style="width: 48%; float: right; margin-right: 10px">
+                    <h2 class="counter">Time</h2>
+                    <label class="rec_label">Check-In<p style="color: red; display: inline;"> *</p></label><br>
+                    <input id="time" class="rec_box" type="text" name="Check_In" value="@DateTime.Now.ToString("t")" required><br>
+                    <h2 class="counter">Purpose</h2>
+                    <label class="rec_label">Purpose of Visit<p style="color: red; display: inline;"> *</p></label><br>
+                    <input id="time" class="rec_box" type="text" name="Purpose" value="" required><br>
+                    <label class="rec_label" title="Who are you here to see?">Request To See<p style="color: red; display: inline;"> *</p></label><br>
+                    <input id="time" class="rec_box" type="text" name="Meeting" value="" required><br>
+                    <br>
+                    <input class="rec_submit" type="submit" value="Record">
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 

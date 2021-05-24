@@ -44,6 +44,7 @@ namespace ProtoTwo.Controllers
             UserDB udb = new UserDB();
             if (udb.Verify(UserName, Password))
             {
+                ViewBag.currentUser = UserName;
                 return RedirectToAction("Dashboard", "Main");
             } else
             {
