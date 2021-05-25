@@ -1,5 +1,6 @@
 ﻿@model ProtoTwo.Models.Welcome
 
+<!--Sets the Page Title and Layout Page-->
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_WelcomeLayout.cshtml";
@@ -9,15 +10,18 @@
     <h1 class="font5" style="color: white; text-align: center; margin-top: 70px">Welcome To Sidmach Technologies.</h1>
     <h5 class="font1" style="color: white; text-align: center; margin-top: 50px; margin-bottom: 50px">SIDMACH is an innovation-driven enterprise providing IT solutions that are scalable, proven, secure and easy to use.</h5>
 </div>
+
 <div class="welcomebox">
     <h2 class="font5" style="color: dimgray; padding: 10px 0px 0px 10px">Schedule An Appointment</h2>
     <h5 class="font1" style="color: dimgray; padding: 10px 0px 0px 10px">In order to serve you better and increase workplace efficiency, we implemented an automated Visitor Management System. Now, you can make appointments from the comfort of your home. We look forward to seeing you at our office!</h5>
+    <!--Url.Action() returns the url of the View related to the Action Method and Controller supplied as arguments.-->
     <button onclick="location.href = '@Url.Action("Appointment", "Welcome")'" class="font5 welcomebtn linkwhite" style="">Make An Appointment</button>
 </div>
 <br>
 <div class="welcomebox">
     <h2 class="font5" style="color: dimgray; padding: 10px 0px 0px 10px">Send Us Feedback</h2>
     <h5 class="font1" style="color: dimgray; padding: 10px 0px 0px 10px">If you have visited Sidmach before, please let us know how satisfactory your visit was. This information will help us improve our Visitor Management System and fix any issues with our customer relations. Thank you!</h5>
+    <!--Url.Action() returns the url of the View related to the Action Method and Controller supplied as arguments.-->
     <button onclick="location.href = '@Url.Action("Feedback", "Welcome")'" class="font5 welcomebtn linkwhite" style="">Send Feedback</button>
 </div>
 <br>
@@ -25,5 +29,6 @@
     <h2 class="font5" style="color: dimgray; padding: 10px 0px 0px 10px">Contact Us</h2>
     <h5 class="font1" style="color: dimgray; padding: 10px 0px 0px 10px">Do you have any suggestions, inquiries, information, or proposal for us? Then contact us! We're always happy to hear from you.</h5>
     <h5 class="font1" style="color: dimgray; padding: 10px 0px 0px 10px"></h5>
+    <!--Url.Action() returns the url of the View related to the Action Method and Controller supplied as arguments.-->
     <button onclick="location.href = '@Url.Action("Contact", "Welcome")'" class="font5 welcomebtn linkwhite" style="">Contact Us</button>
 </div>

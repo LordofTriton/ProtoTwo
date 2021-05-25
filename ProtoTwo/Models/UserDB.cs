@@ -10,22 +10,26 @@ namespace ProtoTwo.Models
 {
     public class UserDB
     {
-        private SqlConnection conn;
+        private SqlConnection conn; //Create a connection object
+        //Initialize the connection
         private void connection()
         {
-            string connstring = ConfigurationManager.ConnectionStrings["VMSDbConn"].ToString();
+            string connstring = ConfigurationManager.ConnectionStrings["VMSDbConn"].ToString(); //The connection string is provided in the 'web.config' file
             conn = new SqlConnection(connstring);
         }
 
+        //Verifies that user provided details exist in the Db
         public bool Verify(string Name, string Pass)
         {
-            connection();
-            List<Main> UserList = new List<Main>();
+            connection(); //Init connection
 
-            SqlCommand cmd = new SqlCommand("GetUserList", conn);
+            List<Main> UserList = new List<Main>(); //Blank List
+
+            SqlCommand cmd = new SqlCommand("GetUserList", conn); //Create an SQL Query string using the provided Stored Procedure
             cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter sd = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+
+            SqlDataAdapter sd = new SqlDataAdapter(cmd); //Used to convert received data into different forms
+            DataTable dt = new DataTable(); //DataTable? Need to look this up.
 
             conn.Open();
             sd.Fill(dt);
@@ -33,6 +37,7 @@ namespace ProtoTwo.Models
 
             foreach (DataRow dr in dt.Rows)
             {
+                //Parse data into prepared list
                 UserList.Add(
                     new Main
                     {
@@ -41,6 +46,7 @@ namespace ProtoTwo.Models
                     });
             }
 
+            //FIlter the UserList with the user provided details
             var check = UserList.Where(x => x.UserName == Name)
                 .Where(x => x.Password == Pass).FirstOrDefault();
 

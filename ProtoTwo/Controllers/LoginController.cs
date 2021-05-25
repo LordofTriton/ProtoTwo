@@ -9,39 +9,19 @@ namespace ProtoTwo.Controllers
 {
     public class LoginController : Controller
     {
-        /*public ActionResult Edit(Login std)
-        {
-            var UserName = std.UserName;
-            var Password = std.Password;
-            var standardName = std.standard.StandardName;
-
-            return RedirectToAction("Index");
-        }*/
-
         // GET: Login
+        //URL: /Login/Index
         public ActionResult Index()
         {
-            //fetch students from the DB using Entity Framework here
-
             return View();
         }
 
-        /*public ActionResult Edit(string UserName, string Password)
-        {
-            //here, get the student from the database in the real application
-
-            //getting a student from collection for demo purpose
-            var std = Login.UserList
-                .Where(s => s.UserName == UserName)
-                .Where(s => s.UserName == UserName).FirstOrDefault();
-
-            return View();
-        }*/
-
+        //Verifies that user provided details exist in the Db
         [HttpPost]
         public ActionResult Verify(string UserName, string Password)
         {
-            UserDB udb = new UserDB();
+            UserDB udb = new UserDB(); //Specialized class for dealing with the User Database
+
             if (udb.Verify(UserName, Password))
             {
                 ViewBag.currentUser = UserName;

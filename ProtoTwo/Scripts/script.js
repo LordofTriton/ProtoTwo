@@ -1,16 +1,13 @@
+//I haven't really been serious with this external script file. I most use inline scripting for javascript :) .
+
+//Initializing variables
 var num = 0;
 var bckg = ["bck1.jpg", "bck3.jpg", "bck4.jpg"];
 var funny = "";
-
 var loadernum = 1;
 var numx = 3;
 
-function Load() {
-    loadernum += 0.1;
-    var loader = document.getElementById("loader");
-    loader.style.width = String(loadernum) + "%";
-}
-
+//For changing background images dynamically
 function Slide() {
     loadernum = 1;
     if (num == 2) {
@@ -22,8 +19,7 @@ function Slide() {
     document.body.style.backgroundImage = "url(" + bckg[num] + ")";
 }
 
-//var load = setInterval(Load, 8);
-
+//Temporary Login Form Validation. This function is now obsolete.
 function Verify() {
     var userid = document.getElementById("userid").value;
     var pass = document.getElementById("pass").value;
@@ -35,6 +31,7 @@ function Verify() {
     }
 }
 
+//Useless graphic I did during debug frustration.
 function Funn() {
     num += 1;
     funny += "&#187";
@@ -45,9 +42,7 @@ function Funn() {
     document.getElementById("fun").innerHTML = funny;
 }
 
-d = new Date;
-//document.getElementById("main_date").innerHTML = d.toDateString();
-
+//This is for blinking red notification lights. This is just preliminary. The notification system hasn't been built yet.
 function Blink() {
     var x = document.getElementsByClassName("notif");
     if (x.length > 0) {
@@ -59,7 +54,6 @@ function Blink() {
         }
     }
 }
-
 var blinky = setInterval(Blink, 500)
 
 

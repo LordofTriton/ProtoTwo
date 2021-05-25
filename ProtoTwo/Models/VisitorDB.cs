@@ -10,11 +10,14 @@ namespace ProtoTwo.Models
 {
     public class VisitorDB
     {
+        //See GuestDB.cs for explanatory comments
+
         private string tagGen()
         {
             Random rd = new Random();
             return Convert.ToString(rd.Next(10000, 99999));
         }
+
         private SqlConnection conn;
         private void connection()
         {

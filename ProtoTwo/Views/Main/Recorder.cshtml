@@ -1,5 +1,6 @@
 ﻿@model ProtoTwo.Models.Main
 
+<!--Sets the Page Title and Layout Page-->
 @{
     ViewBag.Title = "Recorder";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -8,6 +9,8 @@
 <div class="divbox">
     <div class="divsolo">
         <div class="rec_cont" id="record_form">
+
+            <!--Recorder Form. Calls the method 'addVisitor' in MainController-->
             <form name="recorder" method="post" action="/Main/addVisitor">
                 <div style="width: 48%; float: left;">
                     <h2 class="counter">Personal Details</h2>
@@ -27,7 +30,10 @@
                 <div style="width: 48%; float: right; margin-right: 10px">
                     <h2 class="counter">Time</h2>
                     <label class="rec_label">Check-In<p style="color: red; display: inline;"> *</p></label><br>
+
+                    <!--DateTime.Now.ToString("t") returns the current time. This should be changed to the TimePicker Widget. Haven't had time for that yet.-->
                     <input id="time" class="rec_box" type="text" name="Check_In" value="@DateTime.Now.ToString("t")" required><br>
+
                     <h2 class="counter">Purpose</h2>
                     <label class="rec_label">Purpose of Visit<p style="color: red; display: inline;"> *</p></label><br>
                     <input id="time" class="rec_box" type="text" name="Purpose" value="" required><br>

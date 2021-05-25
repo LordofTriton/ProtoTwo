@@ -18,6 +18,7 @@ namespace ProtoTwo.Models
             conn = new SqlConnection(connstring);
         }
 
+        //Initialize List
         public static IList<Main> VisitorList;
         public static IList<Main> CGuestList;
         public static IList<Main> PGuestList;
@@ -25,6 +26,7 @@ namespace ProtoTwo.Models
         public static IList<Main> FilterList;
         public static IList<Main> RatingsList;
 
+        //Initialize Variables
         public string UserName { get; set; }
         public string Password { get; set; }
 
@@ -42,7 +44,9 @@ namespace ProtoTwo.Models
         public string Email { get; set; }
 
         public static string period_filter = "Today";
+
         public static int count = 1;
+
         public static bool FilterStatus = false;
 
         [DataType(DataType.Date)]
@@ -60,22 +64,27 @@ namespace ProtoTwo.Models
 
         [DataType(DataType.Time)]
         public DateTime STime { get; set; }
+
         [DataType(DataType.Time)]
         public DateTime STimeTo { get; set; }
+
         [DataType(DataType.Time)]
         public DateTime STimeFrom { get; set; }
 
         public string Time { get; set; }
 
+        ////Gets all the entries in the CSR Db
         public List<Main> GetRatings()
         {
-            connection();
-            List<Main> RatingsList = new List<Main>();
+            connection(); //Init connection
 
-            SqlCommand cmd = new SqlCommand("GetRatings", conn);
+            List<Main> RatingsList = new List<Main>(); //Blank List
+
+            SqlCommand cmd = new SqlCommand("GetRatings", conn); //Create an SQL Query string using the provided Stored Procedure
             cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter sd = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+
+            SqlDataAdapter sd = new SqlDataAdapter(cmd); //Used to convert received data into different forms
+            DataTable dt = new DataTable(); //DataTable? Need to look this up.
 
             conn.Open();
             sd.Fill(dt);
@@ -83,6 +92,7 @@ namespace ProtoTwo.Models
 
             foreach (DataRow dr in dt.Rows)
             {
+                //Parse data into prepared list
                 RatingsList.Add(
                     new Main
                     {
@@ -93,6 +103,7 @@ namespace ProtoTwo.Models
             return RatingsList;
         }
 
+        //Checks if the provided date is in the current week
         public bool isInWeek(DateTime date0)
         {
             var date = date0.ToString("d");

@@ -10,20 +10,28 @@
     padding-bottom: 150px;
 }
 
+/*Preparatory formatting*/
+* {box-sizing: border-box;}
+a {text-decoration: none;}
+button {outline: 0px;}
+
+/*Animations*/
 @keyframes emerge-fade {
     from { opacity: 0; }
     to { opacity: 100; }
 }
-
 @keyframes strobe {
     0% { box-shadow: 0px 0px 0px black; transform: scale(1, 1); }
     50% { box-shadow: 0px 0px 30px black; transform: scale(1.1, 1.1); }
     100% { box-shadow: 0px 0px 0px black; transform: scale(1, 1); }
 }
 
-* {
-    box-sizing: border-box;
-}
+/*Font families*/
+.font1 {font-family: 'Arial Rounded MT';}
+.font2 {font-family: 'Masque';}
+.font3 {font-family: 'Ethnocentric';}
+.font4 {font-family: 'Georgia';}
+.font5 {font-family: 'Momcake'}
 
 .loge {
     background-color: red;
@@ -39,53 +47,6 @@
         transform: scale(3, 0.5);
     }
 
-.font1 {font-family: 'Arial Rounded MT';}
-.font2 {font-family: 'Masque';}
-.font3 {font-family: 'Ethnocentric';}
-.font4 {font-family: 'Georgia';}
-.font5 {font-family: 'Momcake'}
-
-.thumb {
-    border-radius: 20px 20px 20px 0px;
-    width: 100%;
-    height: 70%;
-    margin: 0px;
-    padding: 0px;
-}
-
-.team {
-    height: 100%;
-    width: 100%;
-    padding: 0px;
-    margin: 0px;
-}
-
-.team:hover .team_text {
-    display: none;
-}
-
-.team_content {
-    width: 100%;
-    height: 100%;
-    display: none;
-    padding: 0px;
-    margin: 0px;
-    transition: opacity linear 2s;
-    overflow-y: scroll;
-    padding-bottom: 30px;
-    box-sizing: border-box;
-}
-
-.team:hover .team_content {
-    display: block;
-}
-
-.team_content .h4 {
-    color: black;
-    padding: 0px;
-    margin: 0px;
-}
-
 .alert_box {
     width: 50%;
     height: 30%;
@@ -96,10 +57,6 @@
     position: absolute;
     z-index: 1;
     margin: 25vw;
-}
-
-a {
-    text-decoration: none;
 }
 
 .linkwhite a {color: white;}
@@ -238,7 +195,7 @@ a {
     margin: auto;
     box-sizing: border-box;
     padding: 40px 30px 40px 30px;
-    margin-top: 60px;
+    margin-top: 20px;
     border-radius: 20px 20px 20px 20px;
     box-shadow: 0px 3px 30px;
 }

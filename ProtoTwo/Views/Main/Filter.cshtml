@@ -1,5 +1,6 @@
 ﻿@model ProtoTwo.Models.Main
 
+<!--Sets the Page Title and Layout Page-->
 @{
     ViewBag.Title = "Filter";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -7,8 +8,15 @@
 
 <div class="box" style="width: 100%; height: auto; margin: 0px;">
     <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Filter</h2>
-    <form id="removeFilter" method="post" action="/Main/removeFilter"><button class="font5 rec_submit linkwhite" style="height: 40px; margin: 10px 30px 0px 0px; float: right; display: inline; width: 150px">Remove Filter</button></form>
+
+    <!--Remove Filter Button. Calls the removeFilter method in MainController-->
+    <form id="removeFilter" method="post" action="/Main/removeFilter">
+        <button class="font5 rec_submit linkwhite" style="height: 40px; margin: 10px 30px 0px 0px; float: right; display: inline; width: 150px">Remove Filter</button>
+    </form>
+
+    <!--Set Filter. Calls the setFilter method in MainController with the contents of the form. -->
     <form method="post" action="/Main/setFilter">
+        <!--Set Filter Button-->
         <div class="period" style="padding-right: 20px">
             <button id="setFilter" class="font5 rec_submit linkwhite" style="height: 40px; margin: 10px 30px 0px 0px">Set Filter</button>
         </div>
@@ -20,6 +28,8 @@
             <input type="text" name="Meeting" style="width: 200px" placeholder="Request To See">
 
             <input type="text" name="Tag" style="width: 130px" placeholder="Tag">
+
+            <!--Had to use HTMLHelpers for these fields. For easy user access, and because the values have to be in 'DateTime' form.-->
             @Html.EditorFor(model => model.STimeFrom, new { htmlAttributes = new { @style = "width: 200px; padding-right: 10px", @title = "Time Range (Lower)" } })
             @Html.EditorFor(model => model.STimeTo, new { htmlAttributes = new { @style = "width: 200px; padding-right: 10px", @title = "Time Range (Higher)" } })
 
@@ -28,7 +38,9 @@
         </div>
     </form>
 </div>
-@*<div id="filtercheckbox" class="filtercheckbox" style="background-color: rgba(0, 0, 0, 0.7); z-index: 1; position: fixed; top: 0; left: 0; height: 100%; width: 100%">
+
+<!--The following code is for a dialog box where the user can select the List to filter: Visitor List or Guest List.-->
+<!--<div id="filtercheckbox" class="filtercheckbox" style="background-color: rgba(0, 0, 0, 0.7); z-index: 1; position: fixed; top: 0; left: 0; height: 100%; width: 100%">
     <div class="" style="height: 50%; width: 40%; background-color: white; position: fixed; top: 25%; left: 30%; border-radius: 20px; border-top: 10px solid lawngreen; box-shadow: 0px 1px 30px">
         <div style="width: 50px; height: 50px; float: right; margin: 0px;">
             <button style="font-family: Momcake; color: dimgray; background-color: transparent; font-size: 40px; width: 100%; height: 100%; border: 0px; outline: 0px" onclick='document.getElementById("filtercheckbox").style.display = "none"'>X</button>
@@ -50,15 +62,4 @@
             </div>
         </div>
     </div>
-</div>*@
-
-
-
-
-
-
-
-
-
-
-
+</div>-->

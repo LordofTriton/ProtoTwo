@@ -1,5 +1,6 @@
 ﻿@model ProtoTwo.Models.Main
 
+<!--Sets the Page Title and Layout Page-->
 @{
     ViewBag.Title = "Guest List";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -27,7 +28,9 @@
                         <th>TAG</th>
                         <th>ACTION</th>
                     </tr>
+                    <!--Declare iterator-->
                     @{ var num = 1; }
+                    <!--Add Table Rows-->
                     @foreach (var entry in ProtoTwo.Models.Main.CGuestList)
                     {
                         <tr id="@entry.Tag">
@@ -40,6 +43,7 @@
                             <td>@entry.Purpose</td>
                             <td>@entry.Meeting</td>
                             <td>@entry.Tag</td>
+                            <!--Check if the entry exists in the Visitors List. If it doesn't, show a Record button, else show nothing-->
                             @if (ProtoTwo.Models.Main.VisitorList != null)
                             {
                                 if (ProtoTwo.Models.Main.VisitorList.Where(model => model.Tag == entry.Tag).Count() > 0)
@@ -49,6 +53,7 @@
                                 else
                                 {
                                     <td>
+                                        <!--Record Button. Calls 'recordGuest' in MainController.-->
                                         <form method='post' action="./recordGuest">
                                             <input type="hidden" name="Tag" value="@entry.Tag">
                                             <input class='db_btn' type='submit' value='Record' style='width: 100%; height: 100%; font-family: Arial Rounded MT; text-align: right;' />
@@ -95,32 +100,46 @@
                             <td>@entry.Time</td>
                             <td>@entry.Purpose</td>
                             <td>@entry.Meeting</td>
+                            <!--Confirm Button. Calls 'confirmGuest' in MainController. Copies the entry into the Confirmed Guest List and deletes this one.-->
                             <td>
                                 <form method='post' action="./confirmGuest">
                                     <input type="hidden" name="Tag" value="@entry.Tag">
                                     <input class='db_btn' type='submit' value='Confirm' style='width: 100%; height: 100%; font-family: Arial Rounded MT; text-align: right;' />
                                 </form>
                             </td>
+
+                            <!--Reschedule Function. Calls 'Reschedule' in MainController. Changes the date and time of the selected entry to user provided values.-->
                             <td>
+
+                                <!--Reschedule Button. Summons a dialog box with form fields requesting values for the new Date and Time for the selected appointment.-->
                                 <form>
                                     <input type="hidden" name="Tag" value="@entry.Tag">
                                     <button class="db_btn" style='width: 100%; height: 100%; font-family: Arial Rounded MT; text-align: right' onclick='document.getElementById("reschedulebox @entry.Tag").style.display = "block"; return false'>Reschedule</button>
                                 </form>
+
+                                <!--Reschedule Dialog Box. Collects values.-->
                                 <div id="reschedulebox @entry.Tag" class="reschedulebox" style="background-color: rgba(0, 0, 0, 0.7); z-index: 1; position: fixed; top: 0; left: 0; height: 100%; width: 100%">
                                     <div class="" style="height: 50%; width: 40%; background-color: white; position: fixed; top: 25%; left: 30%; border-radius: 20px; border-top: 10px solid lawngreen; box-shadow: 0px 1px 30px black">
+
+                                        <!--Cancel Button. To close the Box.-->
                                         <div style="width: 50px; height: 50px; float: right; margin: 0px;">
                                             <button style="font-family: Momcake; color: dimgray; background-color: transparent; font-size: 40px; width: 100%; height: 100%; border: 0px; outline: 0px" onclick='document.getElementById("reschedulebox").style.display = "none";'>X</button>
                                         </div>
+
                                         <h1 id="tggd" class="font5" style="color: dimgray; padding: 10px 0px 0px 30px; margin: 0px">Reschedule Appointment</h1><br>
                                         <form method="post" action="/Main/Reschedule">
                                             <div style="padding: 20px 30px 0px 30px;">
                                                 <div style="float: left; width: 48%">
                                                     <input type="hidden" name="Tag" value="@entry.Tag">
                                                     <label class="font5" name="Date" style="color: dimgray">Specify Date</label><br>
+
+                                                    <!--Had to use HTMLHelpers for these fields. For easy user access, and because the values have to be in 'DateTime' form.-->
                                                     @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @style = "width: 100%; height: 50px; background-color: white; border: 0px; border-radius: 10px; box-shadow: 0px 1px 10px; outline: 0px; padding-left: 20px; margin-top: 10px; margin-bottom: 20px; padding-right: 10px; font-family: Momcake; color: dimgrey" } })
                                                 </div>
                                                 <div style="float: right; width: 48%">
                                                     <label class="font5" name="Time" style="color: dimgray">Specify Time</label><br>
+
+                                                    <!--Had to use HTMLHelpers for these fields. For easy user access, and because the values have to be in 'DateTime' form.-->
                                                     @Html.EditorFor(m => m.STime, new { htmlAttributes = new { @style = "width: 100%; height: 50px; background-color: white; border: 0px; border-radius: 10px; box-shadow: 0px 1px 10px; outline: 0px; padding-left: 20px; margin-top: 10px; padding-right: 10px; font-family: Momcake; color: dimgrey" } })
                                                 </div>
                                                 <input class="rec_submit" type="submit" value="Submit" style="margin-top: 50px">

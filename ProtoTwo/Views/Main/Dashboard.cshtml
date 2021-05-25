@@ -1,5 +1,6 @@
 ﻿@model ProtoTwo.Models.Main
 
+<!--Sets the Page Title and Layout Page-->
 @{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -17,16 +18,22 @@
                         <th>LAST NAME</th>
                         <th>TAG</th>
                     </tr>
+                    <!--Get No. of Visitors in List-->
                     @{ var num = 1; var limit = ProtoTwo.Models.Main.VisitorList.Count(); }
+
+                    <!--Add Table Rows-->
                     @foreach (var entry in ProtoTwo.Models.Main.VisitorList.Skip(Math.Max(0, limit - 8)))
                     {
+                        <!--The 'location.href' is used to link to the specified entry in the Visitor's Registry-->
+                        <!--It'll be discarded when Visitor Login is implemented. :( -->
                         <tr onclick="location.href = '@Url.Action("Registry", "Main")' + '#' + @entry.Tag">
                             <td>@num</td>
                             <td>@entry.FirstName</td>
                             <td>@entry.LastName</td>
                             <td>@entry.Tag</td>
                         </tr>
-                        num += 1;
+                        num += 1; //Used for table row numbering.
+                                  //For some reason, using AUTO_INCREMENT on the SQL DB Table (ID column) would periodically fail.
                     }
                 </table>
             </div>
@@ -43,7 +50,10 @@
                         <th>LAST NAME</th>
                         <th>TAG</th>
                     </tr>
+                    <!--Get No. of Guests in List-->
                     @{ num = 1; limit = ProtoTwo.Models.Main.CGuestList.Count(); }
+
+                    <!--Add Table Rows-->
                     @foreach (var entry in ProtoTwo.Models.Main.CGuestList.Skip(Math.Max(0, limit - 8)))
                     {
                         <tr onclick="location.href = '@Url.Action("GuestList", "Main", new { id = @entry.Tag })'">
@@ -67,7 +77,10 @@
                 <img src="~/Images/bdge4.png" width=60 height=60 style="margin: 10px 0px 0px 10px">
                 <div style="float: right; width: 75%; padding-top: 5px">
                     <h4 class="font5" style="color: dimgray; padding: 11px 0px 0px 10px; margin: 0px">Today's Visitors</h4>
-                    <h2 class="font5" style="color: dimgray; padding: 0px 10px 10px 10px; font-size: 40px; margin: 0px">@ProtoTwo.Models.Main.VisitorList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")).Count()</h2>
+                    <h2 class="font5" style="color: dimgray; padding: 0px 10px 10px 10px; font-size: 40px; margin: 0px">
+                        <!--Get No. of Visitors registered on current date-->
+                        @ProtoTwo.Models.Main.VisitorList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")).Count()
+                    </h2>
                 </div>
             </div>
         </div>
@@ -76,7 +89,10 @@
                 <img src="~/Images/bdge4.png" width=60 height=60 style="margin: 10px 0px 0px 10px">
                 <div style="float: right; width: 75%; padding-top: 5px">
                     <h4 class="font5" style="color: dimgray; padding: 11px 10px 0px 10px; margin: 0px">Today's Guests</h4>
-                    <h2 class="font5" style="color: dimgray; padding: 0px 10px 10px 10px; font-size: 40px; margin: 0px">@ProtoTwo.Models.Main.CGuestList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")).Count()</h2>
+                    <h2 class="font5" style="color: dimgray; padding: 0px 10px 10px 10px; font-size: 40px; margin: 0px">
+                        <!--Get No. of Guests registered on current date-->
+                        @ProtoTwo.Models.Main.CGuestList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")).Count()
+                    </h2>
                 </div>
             </div>
         </div>
@@ -86,16 +102,20 @@
                 <div style="float: right; width: 75%; padding-top: 5px">
                     <h4 class="font5" style="color: dimgray; padding: 11px 10px 0px 10px; margin: 0px">New Visitors</h4>
                     <h2 class="font5" style="color: dimgray; padding: 0px 10px 10px 10px; font-size: 40px; margin: 0px">
+
+                        <!--Get List of Visitors registered on the currrent day, and how many there are-->
                         @{ var today = ProtoTwo.Models.Main.VisitorList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")); num = today.Count(); }
+
+                        <!--Check if the Visitors have come before, increment variable num if they haven't.-->
                         @foreach (var entry in today)
-                           {
-                                var check = ProtoTwo.Models.Main.VisitorList.Where(mod => mod.FirstName == entry.FirstName)
-                                    .Where(mod => mod.LastName == entry.LastName);
+                        {
+                            var check = ProtoTwo.Models.Main.VisitorList.Where(mod => mod.FirstName == entry.FirstName)
+                                .Where(mod => mod.LastName == entry.LastName);
 
-                                if (check.Count() == 1) { num++; }
+                            if (check.Count() == 1) { num++; }
+                        }
 
-                           }
-                        @num
+                        @num <!--Print num-->
                     </h2>
                 </div>
             </div>
@@ -106,7 +126,10 @@
                 <div style="float: right; width: 75%; padding-top: 5px">
                     <h4 class="font5" style="color: dimgray; padding: 11px 10px 0px 10px; margin: 0px">New Guests</h4>
                     <h2 class="font5" style="color: dimgray; padding: 0px 10px 10px 10px; font-size: 40px; margin: 0px">
+                        <!--Get List of Guests registered on the currrent day, and how many there are-->
                         @{ today = ProtoTwo.Models.Main.CGuestList.Where(mod => mod.RegDate == DateTime.Now.ToString("d")); num = today.Count(); }
+
+                        <!--Check if the Guests have come before, increment variable num if they haven't.-->
                         @foreach (var entry in today)
                         {
                             var check = ProtoTwo.Models.Main.CGuestList.Where(mod => mod.FirstName == entry.FirstName)
@@ -115,7 +138,7 @@
                             if (check.Count() == 1) { num++; }
 
                         }
-                        @num
+                        @num <!--Print num-->
                     </h2>
                 </div>
             </div>
@@ -125,28 +148,37 @@
         <div style="width: 100%; height: 225px; float: left; padding: 0px 0px 15px 0px">
             <div style="width: 100%; height: 100%; margin: 0px; padding: 0px 10px 20px 30px; background-color: white; border-radius: 5px; box-shadow: 0px 1px 10px black;">
                 <div id="pie" class="pie" style="padding: 0px; margin: 0px; margin-top: 20.5px; height: 175px; width: 175px; float: left; overflow: hidden">
+
+                    <!--The following code is to get the percentage of the average of all Rating in the CSR Db. -->
+                    <!--It was commented out for google charts. I decided to leave it in for now. Might need it elsewhere :) -->
                     @*<h1 class="font1" style="padding: 0px; margin: 0px; color: white; text-align: center; margin-top: 35%; font-size: 50px">
-                        @{
-                            var num7 = 0;
-                            foreach (var entry in @ProtoTwo.Models.Main.RatingsList) { num7 += @entry.Ratings; }
-                            var num8 = @ProtoTwo.Models.Main.RatingsList.Count();
-                            var num9 = Convert.ToString((num7 / num8) * 10);
-                        }
-                        @num9%
-                    </h1>*@
+                            @{
+                                var num7 = 0;
+                                foreach (var entry in @ProtoTwo.Models.Main.RatingsList) { num7 += @entry.Ratings; }
+                                var num8 = @ProtoTwo.Models.Main.RatingsList.Count();
+                                var num9 = Convert.ToString((num7 / num8) * 10);
+                            }
+                            @num9%
+                        </h1>*@
+
                 </div>
                 <div style="width: 70%; float: right">
                     <h1 class="font5" style="color: dimgray; padding: 0px 30px 0px 30px">Current Customer Satisfaction Rating</h1>
                     <div style="width: 28%; float: left; background-color: gray; border-radius: 10px; height: 75px; margin: 0px 0px 0px 30px">
                         <h4 class="font5" style="color: white; padding: 10px 10px 0px 10px; margin: 0px">Today</h4>
-                        <h1 class="font5" style="color: white; padding: 0px 10px 10px 10px; margin: 0px; font-size: 40px">@ProtoTwo.Models.Main.RatingsList.Where(mod => mod.SetDate == DateTime.Now.ToString("d")).Count()</h1>
+                        <h1 class="font5" style="color: white; padding: 0px 10px 10px 10px; margin: 0px; font-size: 40px">
+                            <!--Get the number of CS Ratings registered on the current day-->
+                            @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.SetDate == DateTime.Now.ToString("d")).Count()
+                        </h1>
                     </div>
                     <div style="width: 28%; float: left; background-color: gray; border-radius: 10px; height: 75px; margin: 0px 0px 0px 5px">
                         <h4 class="font5" style="color: white; padding: 10px 10px 0px 10px; margin: 0px">This Week</h4>
                         <h1 class="font5" style="color: white; padding: 0px 10px 10px 10px; margin: 0px; font-size: 40px">
                             @{
+                                <!--Had to use an object refrence for method 'isInWeek' :) -->
                                 ProtoTwo.Models.Main mod3 = new ProtoTwo.Models.Main();
                             }
+                            <!--Get the number of CS Ratings in the current week-->
                             @ProtoTwo.Models.Main.RatingsList.Where(mod => mod3.isInWeek(Convert.ToDateTime(mod.SetDate))).Count()
                         </h1>
                     </div>
@@ -154,6 +186,7 @@
                         <h4 class="font5" style="color: white; padding: 10px 10px 0px 10px; margin: 0px">This Month</h4>
                         <h1 class="font5" style="color: white; padding: 0px 10px 10px 10px; margin: 0px; font-size: 40px">
                             @{
+                                <!--Get the number of CS Ratings in the current month-->
                                 @ProtoTwo.Models.Main.RatingsList.Where(mod => Convert.ToDateTime(mod.SetDate).Month == DateTime.Now.Month && Convert.ToDateTime(mod.SetDate).Year == DateTime.Now.Year).Count()
                             }
                         </h1>
@@ -164,68 +197,25 @@
     </div>
 </div>
 <br>
+<!--Unused Boxes. Will fill them later. -->
 <div class="divbox">
     <div class="divduo">
         <div class="box">
-            <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Latest Additions To The <span style="color: red; font-family: Momcake">Guest List</span></h2>
-            <div class="period">
-                <h3 class="period_id linkgray" style='color: dimgrey; font-family: Momcake; float: right; padding-top: 5px'>&#187 @Html.ActionLink("Filter", "Filter")</h3>
-            </div>
-            <div>
-                <table style="height: 80%">
-                    <tr>
-                        <th>ID</th>
-                        <th>FIRST NAME</th>
-                        <th>LAST NAME</th>
-                        <th>TAG</th>
-                    </tr>
-                    @{ num = 1; limit = ProtoTwo.Models.Main.VisitorList.Count(); }
-                    @foreach (var entry in ProtoTwo.Models.Main.VisitorList.Skip(Math.Max(0, limit - 8)))
-                    {
-                        <tr onclick="location.href = '@Url.Action("Registry", "Main")' + '#' + @entry.Tag">
-                            <td>@num</td>
-                            <td>@entry.FirstName</td>
-                            <td>@entry.LastName</td>
-                            <td>@entry.Tag</td>
-                        </tr>
-                        num += 1;
-                    }
-                </table>
-            </div>
+            <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Box</h2>
+
         </div>
     </div>
     <div class="divduo">
         <div class="box">
-            <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Latest Additions To The <span style="color: red; font-family: Momcake">Guest List</span></h2>
-            <div class="period">
-                <h3 class="period_id linkgray" style="color: dimgrey; font-family: Momcake; float: right; padding-top: 5px">&#187 @Html.ActionLink("Filter", "Filter")</h3>
-            </div>
-            <div>
-                <table style="height: 80%">
-                    <tr>
-                        <th>ID</th>
-                        <th>FIRST NAME</th>
-                        <th>LAST NAME</th>
-                        <th>TAG</th>
-                    </tr>
-                    @{ num = 1; limit = ProtoTwo.Models.Main.CGuestList.Count(); }
-                    @foreach (var entry in ProtoTwo.Models.Main.CGuestList.Skip(Math.Max(0, limit - 8)))
-                    {
-                        <tr onclick="location.href = '@Url.Action("GuestList", "Main", new { id = @entry.Tag })'">
-                            <td>@num</td>
-                            <td>@entry.FirstName</td>
-                            <td>@entry.LastName</td>
-                            <td>@entry.Tag</td>
-                        </tr>
-                        num += 1;
-                    }
-                </table>
-            </div>
+            <h2 style="color: dimgrey; font-family: Momcake; display: inline; float: left">Box</h2>
+
         </div>
     </div>
 </div>
 
-<div class="divbox">
+<!--The following code was commented out because I redesigned the interface and they don't match-->
+<!--Might be redesigned to fit later, or the code could be recycledfor other purposes.-->
+<!--<div class="divbox">
     <div class="divduo">
         <div class="box">
             <h2 style="color: dimgrey; font-family: Momcake">Visitor Distribution</h2>
@@ -358,15 +348,17 @@
             </div>
         </div>
     </div>
-</div>
-
+</div>-->
+<!--Script code for the pie chart-->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     //Load Google Charts
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChart);
 
+    //Draw Chart
     function drawChart() {
+        //Initialize the data?
         var data = google.visualization.arrayToDataTable([
             ['Rating', 'Number of Rates'],
             ["1", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 1).Count()],
@@ -381,8 +373,13 @@
             ["10", @ProtoTwo.Models.Main.RatingsList.Where(mod => mod.Ratings == 10).Count()],
         ]);
 
+        //Customization Options (PieHole turns a Pie CHart into a Donut Chart. Haha :) )
         var options = { width: 175, height: 175, pieHole: 0.4 };
+
+        //Prepare the provided element (I'm thinking CSS changes? Background Image and stuff like that. Will check it out later.)
         var chart = new google.visualization.PieChart(document.getElementById('pie'));
+
+        //Draw
         chart.draw(data, options);
     }
 </script>

@@ -10,28 +10,33 @@ namespace ProtoTwo.Models
 {
     public class GuestDB
     {
+        //Temporary User Tag Number Generator. The Tag is used to identify visitors and will be unique to each person.
         private string tagGen()
         {
             Random rd = new Random();
-            return Convert.ToString(rd.Next(10000, 99999));
+            return Convert.ToString(rd.Next(10000, 99999)); //Gets a random number between 10000 and 99999
         }
 
-        private SqlConnection conn;
+        private SqlConnection conn; //Create a connection object
+        //Initialize the connection
         private void connection()
         {
-            string connstring = ConfigurationManager.ConnectionStrings["VMSDbConn"].ToString();
+            string connstring = ConfigurationManager.ConnectionStrings["VMSDbConn"].ToString(); //The connection string is provided in the 'web.config' file
             conn = new SqlConnection(connstring);
         }
 
+        //Gets all the entries in the Confirmed Guests List
         public List<Main> GetCGuests()
         {
-            connection();
-            List<Main> CGuestList = new List<Main>();
-            SqlCommand cmd = new SqlCommand("GetCGuestList", conn);
+            connection(); //Init connection
+
+            List<Main> CGuestList = new List<Main>(); //Blank List
+
+            SqlCommand cmd = new SqlCommand("GetCGuestList", conn); //Create an SQL Query string using the provided Stored Procedure
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlDataAdapter sd = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+            SqlDataAdapter sd = new SqlDataAdapter(cmd); //Used to convert received data into different forms
+            DataTable dt = new DataTable(); //DataTable? Need to look this up.
 
             conn.Open();
             sd.Fill(dt);
@@ -39,6 +44,7 @@ namespace ProtoTwo.Models
 
             foreach (DataRow dr in dt.Rows)
             {
+                //Parse data into prepared list
                 CGuestList.Add(
                     new Main
                     {
@@ -58,6 +64,8 @@ namespace ProtoTwo.Models
         }
         public List<Main> GetPGuests()
         {
+            //See GetCGuests() above for explantory comments
+
             connection();
             List<Main> PGuestList = new List<Main>();
             SqlCommand cmd = new SqlCommand("GetPGuestList", conn);
@@ -91,13 +99,17 @@ namespace ProtoTwo.Models
         }
         public void RecordGuest(string Tag)
         {
+            //See GetCGuests() above for explantory comments
+
             connection();
             SqlCommand cmd = new SqlCommand("RecordGuest", conn);
             cmd.CommandType = CommandType.StoredProcedure;
 
+            //Filter CGuestList with provided Tag string
             var lst = Main.CGuestList
                 .Where(s => s.Tag == Tag).FirstOrDefault();
 
+            //Add parameters into the Stored Procedure
             cmd.Parameters.AddWithValue("@FirstName", lst.FirstName);
             cmd.Parameters.AddWithValue("@LastName", lst.LastName);
             cmd.Parameters.AddWithValue("@Residence", lst.Residence);
@@ -116,6 +128,8 @@ namespace ProtoTwo.Models
         }
         public void AddNewGuest(Main model)
         {
+            //See RecordGuest() above for explantory comments
+
             connection();
             SqlCommand cmd = new SqlCommand("AddNewGuest", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -137,6 +151,8 @@ namespace ProtoTwo.Models
         }
         public void ConfirmGuest(string Tag)
         {
+            //See RecordGuest() above for explantory comments
+
             connection();
             SqlCommand cmd = new SqlCommand("ConfirmGuest", conn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -171,6 +187,8 @@ namespace ProtoTwo.Models
 
         public void UpdatePGuest(string Date, string Time, string Tag)
         {
+            //See RecordGuest() above for explantory comments
+
             connection();
             SqlCommand cmd = new SqlCommand("Reschedule", conn);
             cmd.CommandType = CommandType.StoredProcedure;

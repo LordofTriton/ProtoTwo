@@ -9,14 +9,7 @@ namespace ProtoTwo.Controllers
 {
     public class WelcomeController : Controller
     {
-        [HttpPost]
-        public ActionResult sendMessage(Welcome zmodel)
-        {
-            //send email to specified address using user-provided data
-
-            return RedirectToAction("Contact");
-        }
-
+        //Saves the user provided Rating into the DB
         [HttpPost]
         public ActionResult saveRating(string Rating)
         {
@@ -27,22 +20,26 @@ namespace ProtoTwo.Controllers
         }
 
         // GET: Welcome
+        //URL: /Welcome/Index
         public ActionResult Index()
         {
             return View();
         }
 
+        //URL: /Welcome/Appointment
         public ActionResult Appointment()
         {
             return View();
         }
 
+        //URL: /Welcome/Feedback
         public ActionResult Feedback(string id)
         {
             ViewBag.feedid = "Rating";
             return View();
         }
 
+        //URL: /Welcome/Contact
         public ActionResult Contact()
         {
             return View();
